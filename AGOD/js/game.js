@@ -6,7 +6,8 @@ game.global = {
 	r1KEY: false,
 	r2KEY: false,
     r3KEY: false,
-    r4KEY: false
+    r4KEY: false,
+    health: 100
 }
 
 game.state.add('mainRoom', mainRoom)
