@@ -79,11 +79,11 @@ teleport2: function (player, room) {
     game.state.start('room2');
 },
 
-teleport2: function (player, room) {
+teleport3: function (player, room) {
     game.state.start('room3');
 },
 
-teleport2: function (player, room) {
+teleport4: function (player, room) {
     game.state.start('room4');
 },
 
