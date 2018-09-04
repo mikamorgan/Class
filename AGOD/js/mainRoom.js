@@ -3,33 +3,48 @@ var mainRoom = {
 preload: function() {
     console.log('In Main Room');
     game.load.image('mainRoom','assets/mainRoom.jpg');
+    game.load.image('player','assets/player.png');
     game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
 },
 
 create: function() {
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
     //Create background
     this.bg = game.add.sprite(0,0,'mainRoom');
     this.bg.scale.setTo(2.75,2.7);
 
     //Create first portal
     this.portal1 = game.add.sprite(400, 380, 'portal');
+    game.physics.arcade.enable(this.portal1);
     this.portal1.animations.add('spin', [0, 1, 2], 30, true);
     this.portal1.animations.play('spin');
+    
 
     //Create second portal
     this.portal2 = game.add.sprite(400, 550, 'portal');
+    game.physics.arcade.enable(this.portal2);
     this.portal2.animations.add('spin', [3, 4, 5], 30, true);
     this.portal2.animations.play('spin');
 
      //Create third portal
      this.portal3 = game.add.sprite(1050, 380, 'portal');
+     game.physics.arcade.enable(this.portal3);
      this.portal3.animations.add('spin', [6, 7, 8], 30, true);
      this.portal3.animations.play('spin');
  
      //Create fourth portal
      this.portal4 = game.add.sprite(1050, 550, 'portal');
+     game.physics.arcade.enable(this.portal4);
      this.portal4.animations.add('spin', [9, 10, 11], 30, true);
      this.portal4.animations.play('spin');
+
+     //Create player
+     this.player = game.add.sprite(800, 400, 'player');
+     this.player.scale.setTo(.2);
+     game.physics.arcade.enable(this.player);
+     this.player.body.collideWorldBounds = true;
 
 
     //Set up for keyboard input
@@ -38,13 +53,38 @@ create: function() {
 
 update: function() {
 
+    //Player movement
     if(k.isDown(Phaser.Keyboard.UP))
-        game.state.start('room1')
+        this.player.body.y -= 10;
     if(k.isDown(Phaser.Keyboard.DOWN))
-        game.state.start('room2')
+        this.player.body.y += 10;
     if(k.isDown(Phaser.Keyboard.LEFT))
-        game.state.start('room3')
+        this.player.body.x -= 10;
     if(k.isDown(Phaser.Keyboard.RIGHT))
-        game.state.start('room4')
-}
+        this.player.body.x += 10;
+
+    //Check if enter a portal    
+    game.physics.arcade.overlap(this.player, this.portal1, this.teleport1, null, this);
+    game.physics.arcade.overlap(this.player, this.portal2, this.teleport2, null, this);
+    game.physics.arcade.overlap(this.player, this.portal3, this.teleport3, null, this);
+    game.physics.arcade.overlap(this.player, this.portal4, this.teleport4, null, this);
+    
+},
+
+teleport1: function (player, room) {
+    game.state.start('room1');
+},
+
+teleport2: function (player, room) {
+    game.state.start('room2');
+},
+
+teleport2: function (player, room) {
+    game.state.start('room3');
+},
+
+teleport2: function (player, room) {
+    game.state.start('room4');
+},
+
 };
