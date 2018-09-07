@@ -13,6 +13,15 @@ var room3 = {
         this.plant.animations.add('grow', [28,29,30,31,40,41,42,43],10,true);
         this.plant.play('grow');
 
+        this.key = game.add.sprite(1100, 500, 'trinkets');
+        this.key.scale.setTo(1.2);
+        this.key.animations.add('key', [52]);
+        this.key.play('key');
+
+        this.crystal_ball = game.add.sprite(500, 400, 'trinkets');
+        this.crystal_ball.animations.add('glow', [88,89,76,77,78,79],7,true);
+        this.crystal_ball.play('glow');
+
 
     },
     
