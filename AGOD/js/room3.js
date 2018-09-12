@@ -51,5 +51,9 @@ var room3 = {
 
     game.physics.arcade.overlap(this.player, this.key, this.teleport, null, this);
 
-    }
+    },
+
+    teleport: function (player, room) {
+        game.state.start('mainRoom');
+    },
 };
