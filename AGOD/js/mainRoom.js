@@ -63,6 +63,14 @@ update: function() {
     if(k.isDown(Phaser.Keyboard.RIGHT))
         this.player.body.x += 10;
 
+    //To show/hide Coltin's fire breath
+    if(k.isDown(Phaser.Keyboard.SPACEBAR)){
+        this.player.alpha = 1;
+    }
+    else{
+        this.player.alpha = 0;
+    }
+
     //Check if enter a portal    
     game.physics.arcade.overlap(this.player, this.portal1, this.teleport1, null, this);
     game.physics.arcade.overlap(this.player, this.portal2, this.teleport2, null, this);
