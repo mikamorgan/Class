@@ -20,9 +20,6 @@ var room3 = {
         this.key.play('key');
         game.physics.arcade.enable(this.key);
 
-        this.crystal_ball = game.add.sprite(500, 400, 'trinkets');
-        this.crystal_ball.animations.add('glow', [88,89,76,77,78,79],7,true);
-        this.crystal_ball.play('glow');
 
          //Create player
         this.player = game.add.sprite(400, 400, 'player');
