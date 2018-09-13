@@ -19,8 +19,14 @@ var room4 = {
         this.smoke.scale.setTo(2);
         this.smoke.animations.add('explode', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],8,false);
         this.smoke.alpha = 0;
-
+        //Flag so animation only plays once
         this.smokeFlag = true;
+
+        this.key = game.add.sprite(1145, 425, 'trinkets');
+        this.key.scale.setTo(1.2);
+        this.key.animations.add('key', [55]);
+        this.key.play('key');
+        game.physics.arcade.enable(this.key);
 
         //Create player
         this.player = game.add.sprite(100, 415, 'player');
@@ -50,10 +56,16 @@ var room4 = {
         this.smoke.animations.play('explode');
         this.smoke.animations.currentAnim.onComplete.add(this.hideSmoke, this);
     }
+
+    game.physics.arcade.overlap(this.player, this.key, this.teleport, null, this);
     },
 
     hideSmoke: function () {
         this.smoke.alpha = 0;
+    },
+
+    teleport: function (player, room) {
+        game.state.start('mainRoom');
     },
 
            
