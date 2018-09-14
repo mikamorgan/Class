@@ -53,8 +53,8 @@ create: function() {
      this.player.scale.setTo(.2);
      game.physics.arcade.enable(this.player);
      this.player.body.collideWorldBounds = true;
-     this.player.anchor.x = .5;
-     this.player.anchor.y = .5;
+     //this.player.anchor.x = .5;
+     //this.player.anchor.y = .5;
 
 
     //Set up for keyboard input
@@ -110,7 +110,7 @@ teleport4: function (player, room) {
 
 updateShadowTexture: function(){
     // Draw shadow
-    this.shadowTexture.context.fillStyle = 'rgb(30, 30, 30)';
+    this.shadowTexture.context.fillStyle = 'rgb(10, 10, 10)';
     this.shadowTexture.context.fillRect(0, 0, this.game.width, this.game.height);
     
         // Randomly change the radius each frame
