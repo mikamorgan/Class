@@ -5,6 +5,7 @@ preload: function() {
     game.load.image('mainRoom','assets/mainRoom.jpg');
     game.load.image('player','assets/player.png');
     game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
+    game.load.spritesheet('bird', 'assets/bird.png', 95, 96);
 },
 
 create: function() {
@@ -15,13 +16,11 @@ create: function() {
     this.bg = game.add.sprite(0,0,'mainRoom');
     this.bg.scale.setTo(2.75,2.7);
 
-    //Create shadows
-    this.shadowTexture = this.game.add.bitmapData(this.game.width, this.game.height);   
+    
 
-    // Create an object that will use the bitmap as a texture
-    this.lightSprite = this.game.add.image(this.game.camera.x, this.game.camera.y, this.shadowTexture);    
-    // Set the blend mode to MULTIPLY. This will darken the colors of everything below this sprite.    
-    this.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
+    //Add torch lights
+    //this.light1.add(torch(200, 150));
+    //this.light2.add(torch(400, 150));
 
     //Create first portal
     this.portal1 = game.add.sprite(400, 380, 'portal');
@@ -48,14 +47,28 @@ create: function() {
      this.portal4.animations.add('spin', [9, 10, 11], 30, true);
      this.portal4.animations.play('spin');
 
+     //Create shadows
+    this.shadowTexture = this.game.add.bitmapData(this.game.width, this.game.height);   
+
+    // Create an object that will use the bitmap as a texture
+    this.lightSprite = this.game.add.image(this.game.camera.x, this.game.camera.y, this.shadowTexture);    
+    // Set the blend mode to MULTIPLY. This will darken the colors of everything below this sprite.    
+    this.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
+
      //Create player
      this.player = game.add.sprite(800, 400, 'player');
      this.player.scale.setTo(.2);
      game.physics.arcade.enable(this.player);
      this.player.body.collideWorldBounds = true;
-     //this.player.anchor.x = .5;
-     //this.player.anchor.y = .5;
+     this.player.anchor.x = .5;
+     this.player.anchor.y = .5;
 
+     //Test Coltin's bird
+     this.bird = game.add.sprite(300, 300, 'bird');
+     this.bird.animations.add('0', [0]);
+     this.bird.animations.add('1', [1]);
+     this.bird.animations.add('2', [2]);
+     this.bird.animations.play('0');
 
     //Set up for keyboard input
     k = game.input.keyboard;
@@ -76,6 +89,10 @@ update: function() {
     if(k.isDown(Phaser.Keyboard.RIGHT))
         this.player.body.x += 10;
 
+    if(k.isDown(Phaser.Keyboard.W))
+        this.bird.animations.play('1');
+    if(k.isDown(Phaser.Keyboard.S))
+        this.bird.animations.play('2');
     //To show/hide Coltin's fire breath
     // if(k.isDown(Phaser.Keyboard.SPACEBAR)){
     //     this.player.alpha = 1;
@@ -132,6 +149,30 @@ updateShadowTexture: function(){
     // This just tells the engine it should update the texture cache
     this.shadowTexture.dirty = true;
     },
+
+//     // Create torch objects
+// // Torch constructor
+// torch = function(x, y) {
+//     this.game.add.image(x, y, this.shadowTexture);
+
+//     // Set the pivot point for this sprite to the center
+//     this.anchor.setTo(0.5, 0.5);
+//     // Randomly change the radius each frame
+//     var radius = 100 + this.game.rnd.integerInRange(1,10);
     
+//     // Draw circle of light with a soft edge
+//     var gradient =
+//         this.shadowTexture.context.createRadialGradient(
+//             x, y,100 * 0.75,
+//             x, y, radius);
+//     gradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+//     gradient.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+
+//     this.shadowTexture.context.beginPath();
+//     this.shadowTexture.context.fillStyle = gradient;
+//     this.shadowTexture.context.arc(this.player.x - this.game.camera.x, this.player.y - this.game.camera.y, radius, 0, Math.PI*2, false);
+//     this.shadowTexture.context.fill();
+
+// },
 
 };
