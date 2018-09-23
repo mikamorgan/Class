@@ -4,7 +4,6 @@ var room2 = {
         game.load.image('room2','assets/room2.jpg');
         game.load.spritesheet('player','assets/player.png', 32,64);
         game.load.spritesheet('ghost','assets/ghost.png',46,48)
-        game.load.spritesheet('dead','assets/dead.png',45,30)
         game.load.spritesheet('portal','assets/portals.png', 80,80)
     },
     
