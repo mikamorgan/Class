@@ -6,10 +6,13 @@ var room4 = {
         game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
         game.load.spritesheet('smoke','assets/smoke.png', 128, 128);
 
+<<<<<<< HEAD
         //For Clay's character
         game.load.spritesheet('battery','assets/battery.png',75,156);
         game.load.spritesheet('H&E','assets/batteryhealth.png',333,100);
 
+=======
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         //Load the four character spritesheets
         game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
         game.load.spritesheet('char2', 'assets/player.png', 32, 64);      //Jacob is character 2

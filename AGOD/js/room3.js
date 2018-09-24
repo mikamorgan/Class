@@ -3,12 +3,17 @@ var room3 = {
         console.log('In Room 3');
         game.load.image('room3','assets/room3.png');
 
+<<<<<<< HEAD
         game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
         game.load.spritesheet('enemy', 'assets/skeleton.png',65.6, 72.5);
 
         //For Clay's character
         game.load.spritesheet('battery','assets/battery.png',75,156);
         game.load.spritesheet('H&E','assets/batteryhealth.png',333,100);
+=======
+        game.load.spritesheet('enemy', 'assets/skeleton.png',65.6, 72.5);
+        game.load.spritesheet('portal', 'assets/unnamed.png', 80, 80);
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
 
         //Load the four character spritesheets
         game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
@@ -17,6 +22,7 @@ var room3 = {
         game.load.spritesheet('char4', 'assets/bird.png', 95, 96);       //Coltin is character 4
     },
     
+<<<<<<< HEAD
  create: function() {
     this.bg = game.add.sprite(0,0,'room3');
     this.bg.scale.setTo(2.75,2.7); 
@@ -153,12 +159,64 @@ var room3 = {
     this.player.anchor.y = .5;
 
     //Create Enemy
+=======
+    create: function() {
+        this.bg = game.add.sprite(0,0,'room3');
+        this.bg.scale.setTo(2.75,2.7);
+        console.log('done')
+//create player
+    this.player = game.add.sprite(800, 400, 'player');
+    this.player.scale.setTo(2);
+    this.player.animations.add('Died', [56,56,56,56,56,56], 10, false);
+    console.log('done2')
+//create enemy
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
     this.enemy = game.add.sprite(100, 445, 'enemy');
     this.enemy.scale.setTo(1.5);
     this.enemy.health =200;
     this.enemyflag = true;
+<<<<<<< HEAD
 
     //Create Enemy Movements
+=======
+    console.log('done3')
+//Portal
+this.portal = game.add.sprite( 604, 200, 'portal');
+game.physics.arcade.enable(this.portal);
+this.portal.animations.add('spin', [0, 1, 2], 11, true);
+this.portal.animations.play('spin');
+this.portal.alpha =0; 
+    //Player animations
+    this.player.animations.add('moveUp', [0, 1, 2,], 10, false);
+    this.player.animations.add('moveDown', [36, 37, 38], 10, false);
+    this.player.animations.add('moveRight', [24, 25, 26], 10, false);
+    this.player.animations.add('moveLeft', [12, 13, 14], 10, false);
+    this.player.animations.add('hitDown', [3, 4, 5], 15, false);
+    this.player.animations.add('hitUp', [39, 40, 41], 15, false);
+    this.player.animations.add('hitRight', [27, 28, 29], 15, false);
+    this.player.animations.add('hitLeft', [15, 16, 17], 15, false); 
+    // Player zombie animations
+    this.player.animations.add('zombieMoveLeft', [60, 61, 62], 10, false);
+    this.player.animations.add('zombieMoveUp', [84, 85, 86], 10, false);
+    this.player.animations.add('zombieMoveDown', [48, 49, 50], 10, false);
+    this.player.animations.add('zombieMoveRight', [72, 73, 74], 10, false);
+    this.player.animations.add('zombieHitLeft', [63, 64, 65], 25, false);
+    this.player.animations.add('zombieHitUp', [87, 88, 89], 25, false);
+    this.player.animations.add('zombieHitDown', [51, 52, 53], 25, false);
+    this.player.animations.add('zombieHitRight', [75, 76, 77], 25, false);
+    // Player skeleton animations
+    this.player.animations.add('skeletonMoveLeft', [18, 19, 20], 10, false);
+    this.player.animations.add('skeletonMoveUp', [42, 43, 44], 10, false);
+    this.player.animations.add('skeletonMoveDown', [6, 7, 8], 10, false);
+    this.player.animations.add('skeletonMoveRight', [30, 31, 32], 10, false);
+    this.player.animations.add('skeletonHitLeft', [21, 22, 23], 40, false);
+    this.player.animations.add('skeletonHitUp', [45, 46, 47], 40, false);
+    this.player.animations.add('skeletonHitDown', [9, 10, 11], 40, false);
+    this.player.animations.add('skeletonHitRight', [33, 34, 35], 40, false);
+//Enemy
+  //Create Enemy Movements
+  console.log('done')
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
     this.enemy.animations.add('moveDown', [0, 1, 2, 3], 10, false);
     this.enemy.animations.add('moveLeft', [12, 13, 14, 15], 10, false);
     this.enemy.animations.add('moveRight', [24, 25, 26, 27], 10, false);
@@ -175,6 +233,7 @@ var room3 = {
     game.physics.arcade.enable(this.enemy);
     this.enemy.body.collideWorldBounds = true; 
 
+<<<<<<< HEAD
     //Portal
     this.portal = game.add.sprite( 604, 200, 'portal');
     game.physics.arcade.enable(this.portal);
@@ -205,6 +264,22 @@ var room3 = {
     else
         this.move4();
 
+=======
+    //Player Physics
+    game.physics.arcade.enable(this.player);
+    console.log('done')
+    this.player.body.collideWorldBounds = true;
+    //Enemy Physics
+    game.physics.arcade.enable(this.enemy);
+    this.enemy.body.collideWorldBounds = true;   
+    
+    k = game.input.keyboard;
+
+    },
+    
+    update: function() {
+      //Enemy Hit Down
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
 if(this.enemyflag){
 //Enemy Attacks
     if((Math.abs(this.player.body.x - this.enemy.body.x) <30)&&(Math.abs(this.player.body.y - this.enemy.body.y) <50)&&(this.enemy.body.y<this.player.body.y)){

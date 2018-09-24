@@ -3,6 +3,7 @@ var room1 = {
         console.log('In Room 1');
         game.load.image('room1','assets/room1.jpg');
 
+<<<<<<< HEAD
         game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
         game.load.spritesheet('enemy','assets/enemy.png',64,64);
 
@@ -10,6 +11,8 @@ var room1 = {
         game.load.spritesheet('battery','assets/battery.png',75,156);
         game.load.spritesheet('H&E','assets/batteryhealth.png',333,100);
 
+=======
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         //Load the four character spritesheets
         game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
         game.load.spritesheet('char2', 'assets/player.png', 32, 64);      //Jacob is character 2

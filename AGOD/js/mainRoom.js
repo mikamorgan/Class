@@ -5,10 +5,13 @@ preload: function() {
     game.load.image('mainRoom','assets/mainRoom.jpg');
     game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
 
+<<<<<<< HEAD
     //For Clay's character
     game.load.spritesheet('battery','assets/battery.png',75,156);
     game.load.spritesheet('H&E','assets/batteryhealth.png',333,100);
 
+=======
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
     //Load the four character spritesheets
     game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
     game.load.spritesheet('char2', 'assets/player.png', 32, 64);      //Jacob is character 2
@@ -54,7 +57,10 @@ create: function() {
      if(game.global.char1){
         this.light = false;
         this.direction = 0;
+<<<<<<< HEAD
         this.fr = 0;
+=======
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
 
         this.player = game.add.sprite(800, 400, 'char1');
         this.player.scale.setTo(1.5);
@@ -78,6 +84,7 @@ create: function() {
         this.player.animations.add('idleR2',[27],12,true);
 
         this.player.animations.play('idle');
+<<<<<<< HEAD
 
         this.battery1 = game.add.sprite(700,500, 'battery');
         this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
@@ -106,6 +113,8 @@ create: function() {
         this.batteryB.animations.add('charge5',[1],10,true);
         this.batteryB.animations.add('charge6',[0],10,true);
         this.batteryB.animations.play('charge0');
+=======
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
      }
 
      //Create Jacob's character
@@ -196,6 +205,7 @@ update: function() {
     this.lightSprite.reset(this.game.camera.x, this.game.camera.y);
     this.updateShadowTexture();
 
+<<<<<<< HEAD
         if(this.battery == 6){
             this.batteryB.animations.play('charge6');}
         if(this.battery == 5){
@@ -228,6 +238,8 @@ update: function() {
             this.healthB.animations.play('life0');
             this.character1.kill();}
 
+=======
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
        this.move1();
    }
    else if(game.global.char2){
@@ -273,6 +285,7 @@ teleport4: function (player, room) {
 
 move1: function () {
 if(this.light){
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.LEFT)&& !k.isDown(Phaser.Keyboard.RIGHT)){
         this.player.body.y -= 4;
         this.player.animations.play('walkU2');
@@ -290,26 +303,61 @@ if(this.light){
         this.player.animations.play('walkR2');
         this.direction = 4;}
     if(k.isDown(Phaser.Keyboard.UP) && k.isDown(Phaser.Keyboard.LEFT)){
+=======
+    if(k.isDown(Phaser.Keyboard.W) && !k.isDown(Phaser.Keyboard.A)&& !k.isDown(Phaser.Keyboard.D)){
+        this.player.body.y -= 4;
+        this.player.animations.play('walkU2');
+        this.direction = 1;}
+    if(k.isDown(Phaser.Keyboard.S) && !k.isDown(Phaser.Keyboard.A)&& !k.isDown(Phaser.Keyboard.D)){
+        this.player.body.y += 4;
+        this.player.animations.play('walkD2');
+        this.direction = 2;}
+    if(k.isDown(Phaser.Keyboard.A) && !k.isDown(Phaser.Keyboard.W)&& !k.isDown(Phaser.Keyboard.S)){
+        this.player.body.x -= 4;
+        this.player.animations.play('walkL2');
+        this.direction = 3;}
+    if(k.isDown(Phaser.Keyboard.D) && !k.isDown(Phaser.Keyboard.W)&& !k.isDown(Phaser.Keyboard.S)){
+        this.player.body.x += 4;
+        this.player.animations.play('walkR2');
+        this.direction = 4;}
+    if(k.isDown(Phaser.Keyboard.W) && k.isDown(Phaser.Keyboard.A)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y -= 4;
         this.player.body.x -= 4;
         this.player.animations.play('walkL2');
         this.direction = 3;}
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.UP) && k.isDown(Phaser.Keyboard.RIGHT)){
+=======
+    if(k.isDown(Phaser.Keyboard.W) && k.isDown(Phaser.Keyboard.D)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y -= 4;
         this.player.body.x += 4;
         this.player.animations.play('walkR2');
         this.direction = 4;}
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.DOWN) && k.isDown(Phaser.Keyboard.LEFT)){
+=======
+    if(k.isDown(Phaser.Keyboard.S) && k.isDown(Phaser.Keyboard.A)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y += 4;
         this.player.body.x -= 4;
         this.player.animations.play('walkL2');
         this.direction = 3;}
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.DOWN) && k.isDown(Phaser.Keyboard.RIGHT)){
+=======
+    if(k.isDown(Phaser.Keyboard.S) && k.isDown(Phaser.Keyboard.D)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y += 4;
         this.player.body.x += 4;
         this.player.animations.play('walkR2');
         this.direction = 4;}
+<<<<<<< HEAD
     if((!k.isDown(Phaser.Keyboard.UP)) && !(k.isDown(Phaser.Keyboard.DOWN)) && !(k.isDown(Phaser.Keyboard.LEFT)) && !(k.isDown(Phaser.Keyboard.RIGHT)))
+=======
+    if((!k.isDown(Phaser.Keyboard.W)) && !(k.isDown(Phaser.Keyboard.S)) && !(k.isDown(Phaser.Keyboard.A)) && !(k.isDown(Phaser.Keyboard.D)))
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
     {
         if(this.direction == 1)
         this.player.animations.play('idleU2');
@@ -320,48 +368,86 @@ if(this.light){
         if(this.direction == 4)
         this.player.animations.play('idleR2');}
     }
+<<<<<<< HEAD
 else {
     if(k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.LEFT)&& !k.isDown(Phaser.Keyboard.RIGHT)){
+=======
+
+else {
+    if(k.isDown(Phaser.Keyboard.W) && !k.isDown(Phaser.Keyboard.A)&& !k.isDown(Phaser.Keyboard.D)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y -= 4;
         this.player.animations.play('walkU');
         this.direction = 1;
         }
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.LEFT)&& !k.isDown(Phaser.Keyboard.RIGHT)){
+=======
+    if(k.isDown(Phaser.Keyboard.S) && !k.isDown(Phaser.Keyboard.A)&& !k.isDown(Phaser.Keyboard.D)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y += 4;
         this.player.animations.play('walkD');
         this.direction = 2;
         }
 
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.UP)&& !k.isDown(Phaser.Keyboard.DOWN)){
         this.player.body.x -= 4;
         this.player.animations.play('walkL');
         this.direction = 3;}
     if(k.isDown(Phaser.Keyboard.RIGHT) && !k.isDown(Phaser.Keyboard.UP)&& !k.isDown(Phaser.Keyboard.DOWN)){
+=======
+    if(k.isDown(Phaser.Keyboard.A) && !k.isDown(Phaser.Keyboard.W)&& !k.isDown(Phaser.Keyboard.S)){
+        this.player.body.x -= 4;
+        this.player.animations.play('walkL');
+        this.direction = 3;}
+    if(k.isDown(Phaser.Keyboard.D) && !k.isDown(Phaser.Keyboard.W)&& !k.isDown(Phaser.Keyboard.S)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.x += 4;
         this.player.animations.play('walkR');
         this.direction = 4;}
 
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.UP) && k.isDown(Phaser.Keyboard.LEFT)){
+=======
+    if(k.isDown(Phaser.Keyboard.W) && k.isDown(Phaser.Keyboard.A)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y -= 4;
         this.player.body.x -= 4;
         this.player.animations.play('walkL');
         this.direction = 3;}
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.UP) && k.isDown(Phaser.Keyboard.RIGHT)){
+=======
+    if(k.isDown(Phaser.Keyboard.W) && k.isDown(Phaser.Keyboard.D)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y -= 4;
         this.player.body.x += 4;
         this.player.animations.play('walkR');
         this.direction = 3;}
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.DOWN) && k.isDown(Phaser.Keyboard.LEFT)){
+=======
+    if(k.isDown(Phaser.Keyboard.S) && k.isDown(Phaser.Keyboard.A)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y += 4;
         this.player.body.x -= 4;
         this.player.animations.play('walkL');
         this.direction = 3;}
+<<<<<<< HEAD
     if(k.isDown(Phaser.Keyboard.DOWN) && k.isDown(Phaser.Keyboard.RIGHT)){
+=======
+    if(k.isDown(Phaser.Keyboard.S) && k.isDown(Phaser.Keyboard.D)){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         this.player.body.y += 4;
         this.player.body.x += 4;
         this.player.animations.play('walkR');
         this.direction = 3;}
+<<<<<<< HEAD
     if((!k.isDown(Phaser.Keyboard.UP)) && !(k.isDown(Phaser.Keyboard.DOWN)) && !(k.isDown(Phaser.Keyboard.LEFT)) && !(k.isDown(Phaser.Keyboard.RIGHT))){
+=======
+    if((!k.isDown(Phaser.Keyboard.W)) && !(k.isDown(Phaser.Keyboard.S)) && !(k.isDown(Phaser.Keyboard.A)) && !(k.isDown(Phaser.Keyboard.D))){
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         if(this.direction == 1)
         this.player.animations.play('idleU');
         if(this.direction == 2)
@@ -418,6 +504,7 @@ move3: function (){
         else if(k.isDown(Phaser.Keyboard.RIGHT)){
             this.player.play('skeletonMoveRight');
             this.player.body.x +=5;}
+<<<<<<< HEAD
 
     //Skeleton Attacks
         if (k.isDown(Phaser.Keyboard.S)){
@@ -429,6 +516,9 @@ move3: function (){
         if(k.isDown(Phaser.Keyboard.W)){
            this.player.play('skeletonHitUp');}
     }
+=======
+        }
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
     //Zombie Movements
     else if(game.global.health <= 50){
         if(k.isDown(Phaser.Keyboard.UP)){
@@ -443,6 +533,7 @@ move3: function (){
         else if(k.isDown(Phaser.Keyboard.RIGHT)){
             this.player.play('zombieMoveRight');
              this.player.body.x +=5;}
+<<<<<<< HEAD
 
     //Zombie Attacks
         if (k.isDown(Phaser.Keyboard.S)){
@@ -454,6 +545,9 @@ move3: function (){
         if(k.isDown(Phaser.Keyboard.W)){
             this.player.play('zombieHitUp');}
     }
+=======
+        }
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
     //Normal Movements
     else{   
         if(k.isDown(Phaser.Keyboard.UP)){
@@ -468,6 +562,7 @@ move3: function (){
         else if(k.isDown(Phaser.Keyboard.RIGHT)){
             this.player.play('moveRight');
             this.player.body.x +=5;}
+<<<<<<< HEAD
         
     //Normal Attacks
         if (k.isDown(Phaser.Keyboard.S)){
@@ -478,6 +573,8 @@ move3: function (){
             this.player.play('hitRight');}  
         if(k.isDown(Phaser.Keyboard.W)){
             this.player.play('hitUp');}
+=======
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         }
 },
 

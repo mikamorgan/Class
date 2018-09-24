@@ -4,11 +4,15 @@ var room2 = {
         game.load.image('room2','assets/room2.jpg');
 
         game.load.spritesheet('ghost','assets/ghost.png',46,48);
+<<<<<<< HEAD
         game.load.spritesheet('portal','assets/portals.jpg', 80,80);
 
         //For Clay's character
         game.load.spritesheet('battery','assets/battery.png',75,156);
         game.load.spritesheet('H&E','assets/batteryhealth.png',333,100);
+=======
+        game.load.spritesheet('portal','assets/portals.png', 80,80);
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
 
         //Load the four character spritesheets
         game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
@@ -101,6 +105,7 @@ var room2 = {
         this.player.animations.add('Lattack',[23],10,true)
         this.player.animations.add('Dattack',[28])
         this.player.animations.add('Uattack',[28])
+<<<<<<< HEAD
      }
 
      //Create Ally's character
@@ -151,6 +156,24 @@ var room2 = {
      this.player.body.collideWorldBounds = true;
      this.player.anchor.x = .5;
      this.player.anchor.y = .5;
+=======
+
+        
+      
+        //Create Ghost
+        this.ghost1 = game.add.sprite(1400,500,'ghost')
+        this.ghost1.scale.setTo(1.5,1.5)
+        game.physics.arcade.enable(this.ghost1)
+        this.ghost1.body.collideWorldBounds=true
+        this.ghost1.animations.add('walkright',[6,7,8],10,true)
+        this.ghost1.animations.add('walkleft',[6,7,8],10,true)
+        this.ghost1.animations.add('idle',[0,1,2],10,true)
+        this.ghost1.animations.add('attackleft',[15,14,13],10,true)
+        this.ghost1.animations.add('attackright',[10,11],10,true)
+        this.ghost1.animations.play('idle');
+        this.ghost1.health = 100
+        this.ghostflag = true
+>>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         
       
     //Create Ghost
