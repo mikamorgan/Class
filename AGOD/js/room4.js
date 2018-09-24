@@ -2,9 +2,19 @@ var room4 = {
     preload: function() {
         console.log('In Room 4');
         game.load.image('room4','assets/room4.jpg');
-        game.load.image('player','assets/player.png');
+
         game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
         game.load.spritesheet('smoke','assets/smoke.png', 128, 128);
+
+        //For Clay's character
+        game.load.spritesheet('battery','assets/battery.png',75,156);
+        game.load.spritesheet('H&E','assets/batteryhealth.png',333,100);
+
+        //Load the four character spritesheets
+        game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
+        game.load.spritesheet('char2', 'assets/player.png', 32, 64);      //Jacob is character 2
+        game.load.spritesheet('char3', 'assets/thing.png', 32, 32);       //Ally is character 3
+        game.load.spritesheet('char4', 'assets/bird.png', 95, 96);       //Coltin is character 4
     },
     
     create: function() {

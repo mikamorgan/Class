@@ -7,7 +7,11 @@ game.global = {
 	r2KEY: false,
     r3KEY: false,
     r4KEY: false,
-    health: 100
+    health: 100,
+    char1: false,
+    char2: false,
+    char3: false,
+    char4: false
 }
 
 game.state.add('mainRoom', mainRoom)
