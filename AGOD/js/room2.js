@@ -2,9 +2,15 @@ var room2 = {
     preload: function() {
         console.log('In Room 2');
         game.load.image('room2','assets/room2.jpg');
-        game.load.spritesheet('player','assets/player.png', 32,64);
-        game.load.spritesheet('ghost','assets/ghost.png',46,48)
-        game.load.spritesheet('portal','assets/portals.png', 80,80)
+
+        game.load.spritesheet('ghost','assets/ghost.png',46,48);
+        game.load.spritesheet('portal','assets/portals.png', 80,80);
+
+        //Load the four character spritesheets
+        game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
+        game.load.spritesheet('char2', 'assets/player.png', 32, 64);      //Jacob is character 2
+        game.load.spritesheet('char3', 'assets/thing.png', 32, 32);       //Ally is character 3
+        game.load.spritesheet('char4', 'assets/bird.png', 95, 96);       //Coltin is character 4
     },
     
     create: function() {
@@ -25,7 +31,7 @@ var room2 = {
         this.player.animations.add('Lattack',[23],10,true)
         this.player.animations.add('Dattack',[28])
         this.player.animations.add('Uattack',[28])
-        this.player.health = 100;
+
         
       
         //Create Ghost

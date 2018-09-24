@@ -2,9 +2,15 @@ var room3 = {
     preload: function() {
         console.log('In Room 3');
         game.load.image('room3','assets/room3.png');
-        game.load.spritesheet('player', 'assets/thing.png', 32, 32);
+
         game.load.spritesheet('enemy', 'assets/skeleton.png',65.6, 72.5);
         game.load.spritesheet('portal', 'assets/unnamed.png', 80, 80);
+
+        //Load the four character spritesheets
+        game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
+        game.load.spritesheet('char2', 'assets/player.png', 32, 64);      //Jacob is character 2
+        game.load.spritesheet('char3', 'assets/thing.png', 32, 32);       //Ally is character 3
+        game.load.spritesheet('char4', 'assets/bird.png', 95, 96);       //Coltin is character 4
     },
     
     create: function() {
@@ -14,7 +20,6 @@ var room3 = {
 //create player
     this.player = game.add.sprite(800, 400, 'player');
     this.player.scale.setTo(2);
-    this.player.health = 100;
     this.player.animations.add('Died', [56,56,56,56,56,56], 10, false);
     console.log('done2')
 //create enemy
@@ -30,8 +35,6 @@ this.portal.animations.add('spin', [0, 1, 2], 11, true);
 this.portal.animations.play('spin');
 this.portal.alpha =0; 
     //Player animations
-
-    console.log('done')
     this.player.animations.add('moveUp', [0, 1, 2,], 10, false);
     this.player.animations.add('moveDown', [36, 37, 38], 10, false);
     this.player.animations.add('moveRight', [24, 25, 26], 10, false);
@@ -49,7 +52,7 @@ this.portal.alpha =0;
     this.player.animations.add('zombieHitUp', [87, 88, 89], 25, false);
     this.player.animations.add('zombieHitDown', [51, 52, 53], 25, false);
     this.player.animations.add('zombieHitRight', [75, 76, 77], 25, false);
-// Player skeleton animations
+    // Player skeleton animations
     this.player.animations.add('skeletonMoveLeft', [18, 19, 20], 10, false);
     this.player.animations.add('skeletonMoveUp', [42, 43, 44], 10, false);
     this.player.animations.add('skeletonMoveDown', [6, 7, 8], 10, false);
@@ -72,10 +75,6 @@ this.portal.alpha =0;
     this.enemy.animations.add('hitRight', [28, 29, 30, 31], 20, false);
   //Create Enemy Death
     this.enemy.animations.add('death', [8, 9, 10, 11], 5, false);
-
-
-
-
 
 
     //Player Physics
