@@ -4,6 +4,7 @@ preload: function() {
     console.log('In Main Room');
     game.load.image('mainRoom','assets/mainRoom.jpg');
     game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
+    game.load.spritesheet('door', 'assets/door.png', 96, 64);
 
     //For Clay's character
     game.load.spritesheet('battery','assets/battery.png',75,156);
@@ -24,6 +25,19 @@ create: function() {
     this.bg = game.add.sprite(0,0,'mainRoom');
     this.bg.scale.setTo(2.75,2.7);
 
+    //Block top of room
+    this.block = game.add.sprite(0,0, 'mainRoom');
+    this.block.scale.setTo(2.75,.65);
+    game.physics.arcade.enable(this.block);
+    this.block.alpha = 0;
+    this.block.immovable = true;
+
+    //Create closed door
+    this.door = game.add.sprite(520, 85, 'door');
+    this.door.scale.setTo(2.5, 2.1);
+    this.door.animations.add('open', [0,1,2,3,4,5,6,7,8,9,10,11], 10, true);
+    game.physics.arcade.enable(this.door);
+
     //Create first portal
     if(!game.global.r1CLEAR){
     this.portal1 = game.add.sprite(400, 380, 'portal');
@@ -32,7 +46,6 @@ create: function() {
     this.portal1.animations.play('spin');
     }
     
-
     //Create second portal
     if(!game.global.r2CLEAR){
     this.portal2 = game.add.sprite(400, 550, 'portal');
@@ -58,7 +71,6 @@ create: function() {
      }
 
      //Create players
-
      //Create Clay's character
      if(game.global.char1){
         this.light = false;
@@ -297,6 +309,17 @@ update: function() {
     game.physics.arcade.overlap(this.player, this.portal3, this.teleport3, null, this);
     game.physics.arcade.overlap(this.player, this.portal4, this.teleport4, null, this);
     
+    if(!(r1CLEAR && r2CLEAR && r3CLEAR && r4CLEAR)){
+        game.physics.arcade.overlap(this.player, this.block, this.bounceBack, null, this);
+    }
+    else{
+        this.door.play('open');
+        game.physics.arcade.overlap(this.player, this.door, this.winGame, null, this);
+    }
+},
+
+bounceBack: function () {
+    this.player.body.y += 10;
 },
 
 teleport1: function () {
@@ -313,6 +336,10 @@ teleport3: function () {
 
 teleport4: function () {
     game.state.start('room4');
+},
+
+winGame: function () {
+    game.state.start('winGame');
 },
 
 move1: function () {
