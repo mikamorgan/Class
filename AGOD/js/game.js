@@ -3,10 +3,10 @@ var game = new Phaser.Game(1535, 885, Phaser.AUTO, 'game');
 console.log('In Game');
 
 game.global = {
-	r1KEY: false,
-	r2KEY: false,
-    r3KEY: false,
-    r4KEY: false,
+	r1CLEAR: false,
+	r2CLEAR: false,
+    r3CLEAR: false,
+    r4CLEAR: false,
     health: 100,
     char1: false,
     char2: false,

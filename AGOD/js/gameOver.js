@@ -6,8 +6,8 @@ var gameOver = {
     
     create: function() {
         //Create background
-        this.bg = game.add.sprite(0,0,'mainRoom');
-        this.bg.scale.setTo(2.75,2.7);
+        this.bg = game.add.sprite(0,0,'BG');
+        this.bg.scale.setTo(2);
     },
     
     update: function() {

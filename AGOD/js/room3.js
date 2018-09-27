@@ -3,26 +3,22 @@ var room3 = {
         console.log('In Room 3');
         game.load.image('room3','assets/room3.png');
 
-<<<<<<< HEAD
         game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
         game.load.spritesheet('enemy', 'assets/skeleton.png',65.6, 72.5);
+        game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
 
         //For Clay's character
         game.load.spritesheet('battery','assets/battery.png',75,156);
         game.load.spritesheet('H&E','assets/batteryhealth.png',333,100);
-=======
-        game.load.spritesheet('enemy', 'assets/skeleton.png',65.6, 72.5);
-        game.load.spritesheet('portal', 'assets/unnamed.png', 80, 80);
->>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
 
         //Load the four character spritesheets
         game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
         game.load.spritesheet('char2', 'assets/player.png', 32, 64);      //Jacob is character 2
         game.load.spritesheet('char3', 'assets/thing.png', 32, 32);       //Ally is character 3
         game.load.spritesheet('char4', 'assets/bird.png', 95, 96);       //Coltin is character 4
+        game.load.spritesheet('firebreath','assets/firebreath.png',73,73)
     },
     
-<<<<<<< HEAD
  create: function() {
     this.bg = game.add.sprite(0,0,'room3');
     this.bg.scale.setTo(2.75,2.7); 
@@ -32,6 +28,20 @@ var room3 = {
         if(game.global.char1){
         this.light = false;
         this.direction = 0;
+
+        //Create battery
+        this.battery1 = game.add.sprite(400,300, 'battery');
+        this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
+        this.battery1.animations.play('bounce');
+        game.physics.arcade.enable(this.battery1);
+        this.battery1.scale.setTo(.3);
+
+        //Create key
+        this.key = game.add.sprite(600, 625, 'trinkets');
+        this.key.scale.setTo(2);
+        this.key.animations.add('key',[52]);
+        this.key.play('key');
+        game.physics.arcade.enable(this.key);
 
         //Create shadows
          this.shadowTexture = this.game.add.bitmapData(this.game.width, this.game.height);   
@@ -64,33 +74,27 @@ var room3 = {
 
         this.player.animations.play('idle');
 
-        this.battery1 = game.add.sprite(700,500, 'battery');
-        this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
-        this.battery1.animations.play('bounce');
-        game.physics.arcade.enable(this.battery1);
-        this.battery1.scale.setTo(.3);
+        // this.healthB = game.add.sprite(100,10,'H&E');
+        // this.healthB.scale.setTo(.50);
+        // this.healthB.animations.add('life0',[13],1,true);
+        // this.healthB.animations.add('life1',[12],10,true);
+        // this.healthB.animations.add('life2',[11],10,true);
+        // this.healthB.animations.add('life3',[10],10,true);
+        // this.healthB.animations.add('life4',[9],10,true);
+        // this.healthB.animations.add('life5',[8],10,true);
+        // this.healthB.animations.add('life6',[7],10,true);
+        // this.healthB.animations.play('life6');
 
-        this.healthB = game.add.sprite(100,10,'H&E');
-        this.healthB.scale.setTo(.50);
-        this.healthB.animations.add('life0',[13],1,true);
-        this.healthB.animations.add('life1',[12],10,true);
-        this.healthB.animations.add('life2',[11],10,true);
-        this.healthB.animations.add('life3',[10],10,true);
-        this.healthB.animations.add('life4',[9],10,true);
-        this.healthB.animations.add('life5',[8],10,true);
-        this.healthB.animations.add('life6',[7],10,true);
-        this.healthB.animations.play('life6');
-
-        this.batteryB = game.add.sprite(250,10,'H&E');
-        this.batteryB.scale.setTo(.50);
-        this.batteryB.animations.add('charge0',[6],10,true);
-        this.batteryB.animations.add('charge1',[5],10,true);
-        this.batteryB.animations.add('charge2',[4],10,true);
-        this.batteryB.animations.add('charge3',[3],10,true);
-        this.batteryB.animations.add('charge4',[2],10,true);
-        this.batteryB.animations.add('charge5',[1],10,true);
-        this.batteryB.animations.add('charge6',[0],10,true);
-        this.batteryB.animations.play('charge0');
+        // this.batteryB = game.add.sprite(250,10,'H&E');
+        // this.batteryB.scale.setTo(.50);
+        // this.batteryB.animations.add('charge0',[6],10,true);
+        // this.batteryB.animations.add('charge1',[5],10,true);
+        // this.batteryB.animations.add('charge2',[4],10,true);
+        // this.batteryB.animations.add('charge3',[3],10,true);
+        // this.batteryB.animations.add('charge4',[2],10,true);
+        // this.batteryB.animations.add('charge5',[1],10,true);
+        // this.batteryB.animations.add('charge6',[0],10,true);
+        // this.batteryB.animations.play('charge0');
         }
 
         //Create Jacob's character
@@ -150,6 +154,15 @@ var room3 = {
         this.player.animations.add('flyup',[9,10,11,10],8,true)
         this.player.animations.add('flyright',[6,7,8,7],8,true)
         this.player.animations.add('flyleft',[3,4,5,4],8,true)
+        game.physics.arcade.enable(this.player);
+
+        //Create fire breath
+        this.fire = game.add.sprite(this.player.body.x,this.player.body.y,'firebreath')
+        game.physics.arcade.enable(this.fire)
+        this.fire.animations.add('fireright',[6,6,6,7,7,7,8,8,8,7,8,7,8],10,false)
+        this.fire.animations.add('fireleft',[3,3,3,4,4,4,5,5,5,4,5,4,5],10,false)
+        this.fire.animations.add('firedown',[0,0,0,1,1,1,2,2,2,1,2,1,2],10,false)
+        this.fire.animations.add('fireup',[9,9,9,10,10,10,11,11,11,10,11,10,11],10,false)
         }
 
     game.physics.arcade.enable(this.player);
@@ -159,64 +172,12 @@ var room3 = {
     this.player.anchor.y = .5;
 
     //Create Enemy
-=======
-    create: function() {
-        this.bg = game.add.sprite(0,0,'room3');
-        this.bg.scale.setTo(2.75,2.7);
-        console.log('done')
-//create player
-    this.player = game.add.sprite(800, 400, 'player');
-    this.player.scale.setTo(2);
-    this.player.animations.add('Died', [56,56,56,56,56,56], 10, false);
-    console.log('done2')
-//create enemy
->>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
     this.enemy = game.add.sprite(100, 445, 'enemy');
     this.enemy.scale.setTo(1.5);
     this.enemy.health =200;
     this.enemyflag = true;
-<<<<<<< HEAD
 
     //Create Enemy Movements
-=======
-    console.log('done3')
-//Portal
-this.portal = game.add.sprite( 604, 200, 'portal');
-game.physics.arcade.enable(this.portal);
-this.portal.animations.add('spin', [0, 1, 2], 11, true);
-this.portal.animations.play('spin');
-this.portal.alpha =0; 
-    //Player animations
-    this.player.animations.add('moveUp', [0, 1, 2,], 10, false);
-    this.player.animations.add('moveDown', [36, 37, 38], 10, false);
-    this.player.animations.add('moveRight', [24, 25, 26], 10, false);
-    this.player.animations.add('moveLeft', [12, 13, 14], 10, false);
-    this.player.animations.add('hitDown', [3, 4, 5], 15, false);
-    this.player.animations.add('hitUp', [39, 40, 41], 15, false);
-    this.player.animations.add('hitRight', [27, 28, 29], 15, false);
-    this.player.animations.add('hitLeft', [15, 16, 17], 15, false); 
-    // Player zombie animations
-    this.player.animations.add('zombieMoveLeft', [60, 61, 62], 10, false);
-    this.player.animations.add('zombieMoveUp', [84, 85, 86], 10, false);
-    this.player.animations.add('zombieMoveDown', [48, 49, 50], 10, false);
-    this.player.animations.add('zombieMoveRight', [72, 73, 74], 10, false);
-    this.player.animations.add('zombieHitLeft', [63, 64, 65], 25, false);
-    this.player.animations.add('zombieHitUp', [87, 88, 89], 25, false);
-    this.player.animations.add('zombieHitDown', [51, 52, 53], 25, false);
-    this.player.animations.add('zombieHitRight', [75, 76, 77], 25, false);
-    // Player skeleton animations
-    this.player.animations.add('skeletonMoveLeft', [18, 19, 20], 10, false);
-    this.player.animations.add('skeletonMoveUp', [42, 43, 44], 10, false);
-    this.player.animations.add('skeletonMoveDown', [6, 7, 8], 10, false);
-    this.player.animations.add('skeletonMoveRight', [30, 31, 32], 10, false);
-    this.player.animations.add('skeletonHitLeft', [21, 22, 23], 40, false);
-    this.player.animations.add('skeletonHitUp', [45, 46, 47], 40, false);
-    this.player.animations.add('skeletonHitDown', [9, 10, 11], 40, false);
-    this.player.animations.add('skeletonHitRight', [33, 34, 35], 40, false);
-//Enemy
-  //Create Enemy Movements
-  console.log('done')
->>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
     this.enemy.animations.add('moveDown', [0, 1, 2, 3], 10, false);
     this.enemy.animations.add('moveLeft', [12, 13, 14, 15], 10, false);
     this.enemy.animations.add('moveRight', [24, 25, 26, 27], 10, false);
@@ -233,7 +194,6 @@ this.portal.alpha =0;
     game.physics.arcade.enable(this.enemy);
     this.enemy.body.collideWorldBounds = true; 
 
-<<<<<<< HEAD
     //Portal
     this.portal = game.add.sprite( 604, 200, 'portal');
     game.physics.arcade.enable(this.portal);
@@ -254,6 +214,11 @@ this.portal.alpha =0;
     this.updateShadowTexture();
 
         this.move1();
+
+        //Action when collect battery
+        game.physics.arcade.overlap(this.player,this.battery1,this.lightOn, null, this)
+
+        game.physics.arcade.overlap(this.player,this.key, this.leave,null,this)
     }
     else if(game.global.char2){
         this.move2();
@@ -261,91 +226,131 @@ this.portal.alpha =0;
     else if(game.global.char3){
         this.move3();
     }
-    else
+    else{
         this.move4();
+        if(k.isDown(Phaser.Keyboard.F)){
+            this.fire.alpha = 1
+           
+            if(this.direction == 1){
+                this.fire.play('fireup')
+                this.fire.body.x = this.player.body.x - 28;
+                this.fire.body.y = this.player.body.y - 74;
+            }
+            if(this.direction == 2){
+                this.fire.play('firedown')
+                this.fire.body.x = this.player.body.x - 28;
+                this.fire.body.y = this.player.body.y + 22;
+            }
+            if(this.direction == 3){
+                 this.fire.play('fireleft')
+                 this.fire.body.x = this.player.body.x - 102;
+                 this.fire.body.y = this.player.body.y - 30;
+                }
+            if(this.direction == 4){
+                this.fire.play('fireright')
+                this.fire.body.x = this.player.body.x + 45;
+                this.fire.body.y = this.player.body.y - 30;
+            }
+        }
+        else{
+            this.fire.alpha = 0
+        }
 
-=======
-    //Player Physics
-    game.physics.arcade.enable(this.player);
-    console.log('done')
-    this.player.body.collideWorldBounds = true;
-    //Enemy Physics
-    game.physics.arcade.enable(this.enemy);
-    this.enemy.body.collideWorldBounds = true;   
-    
-    k = game.input.keyboard;
+        game.physics.arcade.overlap(this.fire, this.enemy, this.fireAttack, null, this)
 
-    },
-    
-    update: function() {
-      //Enemy Hit Down
->>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
+    }
+
 if(this.enemyflag){
 //Enemy Attacks
     if((Math.abs(this.player.body.x - this.enemy.body.x) <30)&&(Math.abs(this.player.body.y - this.enemy.body.y) <50)&&(this.enemy.body.y<this.player.body.y)){
         this.enemy.play('hitDown')
-        this.player.health -= 5;
+        game.global.health--;
     }
     else if((Math.abs(this.player.body.x - this.enemy.body.x) <30)&&(Math.abs(this.player.body.y - this.enemy.body.y) <50)&&(this.player.body.y<this.enemy.body.y)){
         this.enemy.play('hitUp')  
-        this.player.health -= 5;      
+        game.global.health--;      
     }
     else if((Math.abs(this.player.body.y - this.enemy.body.y) <30)&&(Math.abs(this.player.body.x - this.enemy.body.x) <50)&&(this.enemy.body.x<this.player.body.x)){ 
-        this.player.health -= 5;   
+        game.global.health--;   
         this.enemy.play('hitRight')
     }
     else if((Math.abs(this.player.body.y - this.enemy.body.y) <30)&&(Math.abs(this.player.body.x - this.enemy.body.x) <50)&&(this.player.body.x<this.enemy.body.x)){
         this.enemy.play('hitLeft')
-        this.player.health -= 5;
+        game.global.health--;
     }
 //Enemy Movements
-    else if(this.player.body.x < this.enemy.body.x){
-        this.enemy.play('moveLeft');
-        this.enemy.body.x -= 2;
+    if(!this.light){
+        if(this.player.body.x < this.enemy.body.x){
+            this.enemy.play('moveLeft');
+            this.enemy.body.x -= 2;
+        }
+        else if(this.player.body.x > this.enemy.body.x){
+            this.enemy.play('moveRight');
+            this.enemy.body.x += 2;
+        }
+        else if(this.player.body.y < this.enemy.body.y){
+            this.enemy.play('moveUp');
+            this.enemy.body.y -= 2;
+        }
+        else if(this.player.body.y > this.enemy.body.y){
+            this.enemy.play('moveDown');
+            this.enemy.body.y += 2;
+        }
     }
-    else if(this.player.body.x > this.enemy.body.x){
-        this.enemy.play('moveRight');
-        this.enemy.body.x += 2;
-    }
-    else if(this.player.body.y < this.enemy.body.y){
-        this.enemy.play('moveUp');
-        this.enemy.body.y -= 2;
-    }
-    else if(this.player.body.y > this.enemy.body.y){
-        this.enemy.play('moveDown');
-        this.enemy.body.y += 2;
+    else{
+        if(this.player.body.x > this.enemy.body.x){
+            this.enemy.play('moveLeft');
+            this.enemy.body.x -= .5;
+        }
+        else if(this.player.body.x < this.enemy.body.x){
+            this.enemy.play('moveRight');
+            this.enemy.body.x += .5;
+        }
+        else if(this.player.body.y > this.enemy.body.y){
+            this.enemy.play('moveUp');
+            this.enemy.body.y -= .5;
+        }
+        else if(this.player.body.y < this.enemy.body.y){
+            this.enemy.play('moveDown');
+            this.enemy.body.y += .5;
+        }
     }
 }
 
 //Player attacks enemy
 if(this.enemyflag){
+    if(!game.global.char1){
     if (k.isDown(Phaser.Keyboard.S)){
         if(this.enemy.body.y - this.player.body.y <100)
         if(this.player.body.x - this.enemy.body.x <30)
-           this.enemy.health--;
+           this.enemy.health -= 3;
     }   
     if(k.isDown(Phaser.Keyboard.A)){
         if(this.enemy.body.y - this.player.body.y <30)
         if(this.player.body.x - this.enemy.body.x <100)
-           this.enemy.health--;
+           this.enemy.health -= 3;
     }
     if(k.isDown(Phaser.Keyboard.D)){
         if(this.player.body.y - this.enemy.body.y <150)
         if(this.enemy.body.x - this.player.body.x < 100)
-           this.enemy.health--;
+           this.enemy.health -= 3;
     }       
     if(k.isDown(Phaser.Keyboard.W)){
          if(this.player.body.y - this.enemy.body.y <100)
          if(this.player.body.x - this.enemy.body.x <150)
-            this.enemy.health--;
+            this.enemy.health -= 3;
         }
+    }
 }
 
     if(this.enemy.health <= 0){
         this.enemyflag = false;
         this.enemy.play('death')
         this.enemy.animations.currentAnim.onComplete.add(this.endgame, this);
-        game.physics.arcade.overlap(this.player, this.portal, this.teleport, null, this);
+    }
+
+    if(this.portal.alpha == 1){
+        game.physics.arcade.overlap(this.player,this.portal, this.teleport,null,this)
     }
 
     if(game.global.health <= 0){
@@ -357,7 +362,17 @@ if(this.enemyflag){
 
 teleport:function()
 {
+    game.global.r3CLEAR = true;
     game.state.start('mainRoom')
+},
+
+fireAttack: function () {
+    this.enemy.health--;
+},
+
+leave: function () {
+    this.key.destroy();
+    this.portal.alpha = 1;
 },
 
 endgame:function()
@@ -578,19 +593,29 @@ move4: function () {
     if(k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.RIGHT)){
         this.player.body.y-=5
         this.player.animations.play('flyup')
-        }
-        if(k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.RIGHT)){
+        this.direction = 1;
+    }
+    if(k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.RIGHT)){
         this.player.body.y+=5
         this.player.animations.play('flydown')
-        }
-        if(k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.RIGHT)){
+        this.direction = 2;
+    }
+    if(k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.RIGHT)){
         this.player.body.x-=5
         this.player.animations.play('flyleft')
-        }
-        if(k.isDown(Phaser.Keyboard.RIGHT) && !k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.UP)){
+        this.direction = 3;
+    }
+    if(k.isDown(Phaser.Keyboard.RIGHT) && !k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.UP)){
         this.player.body.x+=5
         this.player.animations.play('flyright')
-        }
+        this.direction = 4;
+    }
+},
+
+lightOn: function(){
+    this.battery1.kill();
+    this.light = true;
+    //this.battery = 6;
 },
 
 updateShadowTexture: function(){
@@ -598,8 +623,9 @@ updateShadowTexture: function(){
     this.shadowTexture.context.fillStyle = 'rgb(10, 10, 10)';
     this.shadowTexture.context.fillRect(0, 0, this.game.width, this.game.height);
     
+    if(this.light){
         // Randomly change the radius each frame
-        var radius = 100 + this.game.rnd.integerInRange(1,10);
+        var radius = 300 + this.game.rnd.integerInRange(1,10);
     
         // Draw circle of light with a soft edge
         var gradient =
@@ -608,6 +634,19 @@ updateShadowTexture: function(){
                 this.player.x - this.game.camera.x, this.player.y - this.game.camera.y, radius);
         gradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
         gradient.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+    }
+    else{
+        // Randomly change the radius each frame
+        var radius = 80 + this.game.rnd.integerInRange(1,5);
+    
+        // Draw circle of light with a soft edge
+        var gradient =
+            this.shadowTexture.context.createRadialGradient(
+                this.player.x - this.game.camera.x, this.player.y - this.game.camera.y,100 * 0.75,
+                this.player.x - this.game.camera.x, this.player.y - this.game.camera.y, radius);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+    }
     
         this.shadowTexture.context.beginPath();
         this.shadowTexture.context.fillStyle = gradient;

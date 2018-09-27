@@ -3,7 +3,7 @@ var room1 = {
         console.log('In Room 1');
         game.load.image('room1','assets/room1.jpg');
 
-<<<<<<< HEAD
+        game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
         game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
         game.load.spritesheet('enemy','assets/enemy.png',64,64);
 
@@ -11,13 +11,12 @@ var room1 = {
         game.load.spritesheet('battery','assets/battery.png',75,156);
         game.load.spritesheet('H&E','assets/batteryhealth.png',333,100);
 
-=======
->>>>>>> 4074e874bcd6fa95ed3a59f2c83e3f4601e62dba
         //Load the four character spritesheets
         game.load.spritesheet('char1', 'assets/CharacterV2.png', 64, 64); //Clay is character 1
         game.load.spritesheet('char2', 'assets/player.png', 32, 64);      //Jacob is character 2
         game.load.spritesheet('char3', 'assets/thing.png', 32, 32);       //Ally is character 3
         game.load.spritesheet('char4', 'assets/bird.png', 95, 96);       //Coltin is character 4
+        game.load.spritesheet('firebreath','assets/firebreath.png',73,73)
     },
     
  create: function() {
@@ -25,20 +24,34 @@ var room1 = {
         this.bg.scale.setTo(3,1.8); 
 
         this.fr = 0;
- 
-        //Create players
-        //Create Clay's character
-        if(game.global.char1){
         this.light = false;
         this.direction = 0;
 
+        //Create key
+        this.key = game.add.sprite(1145, 725, 'trinkets');
+        this.key.scale.setTo(1.2);
+        this.key.animations.add('key',[55]);
+        this.key.play('key');
+        game.physics.arcade.enable(this.key);
+
+        //Create battery
+        this.battery1 = game.add.sprite(700,500, 'battery');
+        this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
+        this.battery1.animations.play('bounce');
+        game.physics.arcade.enable(this.battery1);
+        this.battery1.scale.setTo(.3);
+
         //Create shadows
-         this.shadowTexture = this.game.add.bitmapData(this.game.width, this.game.height);   
+        this.shadowTexture = this.game.add.bitmapData(this.game.width, this.game.height);   
 
         // Create an object that will use the bitmap as a texture
         this.lightSprite = this.game.add.image(this.game.camera.x, this.game.camera.y, this.shadowTexture);    
         // Set the blend mode to MULTIPLY. This will darken the colors of everything below this sprite.    
         this.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
+ 
+        //Create players
+        //Create Clay's character
+        if(game.global.char1){
 
         this.player = game.add.sprite(800, 400, 'char1');
         this.player.scale.setTo(1.5);
@@ -63,33 +76,29 @@ var room1 = {
 
         this.player.animations.play('idle');
 
-        this.battery1 = game.add.sprite(700,500, 'battery');
-        this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
-        this.battery1.animations.play('bounce');
-        game.physics.arcade.enable(this.battery1);
-        this.battery1.scale.setTo(.3);
+        //Not sure if we want this, bc the battery never changes and we will display health separately 
 
-        this.healthB = game.add.sprite(100,10,'H&E');
-        this.healthB.scale.setTo(.50);
-        this.healthB.animations.add('life0',[13],1,true);
-        this.healthB.animations.add('life1',[12],10,true);
-        this.healthB.animations.add('life2',[11],10,true);
-        this.healthB.animations.add('life3',[10],10,true);
-        this.healthB.animations.add('life4',[9],10,true);
-        this.healthB.animations.add('life5',[8],10,true);
-        this.healthB.animations.add('life6',[7],10,true);
-        this.healthB.animations.play('life6');
+        // this.healthB = game.add.sprite(100,10,'H&E');
+        // this.healthB.scale.setTo(.50);
+        // this.healthB.animations.add('life0',[13],1,true);
+        // this.healthB.animations.add('life1',[12],10,true);
+        // this.healthB.animations.add('life2',[11],10,true);
+        // this.healthB.animations.add('life3',[10],10,true);
+        // this.healthB.animations.add('life4',[9],10,true);
+        // this.healthB.animations.add('life5',[8],10,true);
+        // this.healthB.animations.add('life6',[7],10,true);
+        // this.healthB.animations.play('life6');
 
-        this.batteryB = game.add.sprite(250,10,'H&E');
-        this.batteryB.scale.setTo(.50);
-        this.batteryB.animations.add('charge0',[6],10,true);
-        this.batteryB.animations.add('charge1',[5],10,true);
-        this.batteryB.animations.add('charge2',[4],10,true);
-        this.batteryB.animations.add('charge3',[3],10,true);
-        this.batteryB.animations.add('charge4',[2],10,true);
-        this.batteryB.animations.add('charge5',[1],10,true);
-        this.batteryB.animations.add('charge6',[0],10,true);
-        this.batteryB.animations.play('charge0');
+        // this.batteryB = game.add.sprite(250,10,'H&E');
+        // this.batteryB.scale.setTo(.50);
+        // this.batteryB.animations.add('charge0',[6],10,true);
+        // this.batteryB.animations.add('charge1',[5],10,true);
+        // this.batteryB.animations.add('charge2',[4],10,true);
+        // this.batteryB.animations.add('charge3',[3],10,true);
+        // this.batteryB.animations.add('charge4',[2],10,true);
+        // this.batteryB.animations.add('charge5',[1],10,true);
+        // this.batteryB.animations.add('charge6',[0],10,true);
+        // this.batteryB.animations.play('charge0');
         }
 
         //Create Jacob's character
@@ -144,11 +153,22 @@ var room1 = {
 
         //Create Coltin's character
         else{
+        this.direction = 0;
+        
         this.player = game.add.sprite(800, 400, 'char4');
         this.player.animations.add('flydown',[0,1,2,1],8,true)
         this.player.animations.add('flyup',[9,10,11,10],8,true)
         this.player.animations.add('flyright',[6,7,8,7],8,true)
         this.player.animations.add('flyleft',[3,4,5,4],8,true)
+        game.physics.arcade.enable(this.player);
+
+        //Create fire breath
+        this.fire = game.add.sprite(this.player.body.x,this.player.body.y,'firebreath')
+        game.physics.arcade.enable(this.fire)
+        this.fire.animations.add('fireright',[6,6,6,7,7,7,8,8,8,7,8,7,8],10,false)
+        this.fire.animations.add('fireleft',[3,3,3,4,4,4,5,5,5,4,5,4,5],10,false)
+        this.fire.animations.add('firedown',[0,0,0,1,1,1,2,2,2,1,2,1,2],10,false)
+        this.fire.animations.add('fireup',[9,9,9,10,10,10,11,11,11,10,11,10,11],10,false)
         }
 
     game.physics.arcade.enable(this.player);
@@ -160,15 +180,12 @@ var room1 = {
     //Create enemy
     this.enemy = game.add.sprite(Math.random() * 1535,Math.random() * 885, 'enemy');
     this.enemy.scale.setTo(1.5);
-    this.enemy.animations.add('idle',[54]);
-    this.enemy.animations.add('walkR',[64,65,66,67,68,69,70,71],15,true);
-    this.enemy.animations.add('walkL',[46,47,48,49,50,51,52,53],15,true);
-    this.enemy.animations.add('walkU',[37,38,39,40,41,42,43,44],15,true);
-    this.enemy.animations.add('walkD',[55,56,57,58,59,60,61,62],15,true);
-    this.enemy.animations.add('idleU',[36],12,true);
-    this.enemy.animations.add('idleD',[54],12,true);
-    this.enemy.animations.add('idleL',[45],12,true);
-    this.enemy.animations.add('idleR',[63],12,true);
+    this.enemy.animations.add('idle',[18]);
+    this.enemy.animations.play('idle');
+    this.enemy.animations.add('walkR',[27,28,29,30,31,32,33,34,35],15,true);
+    this.enemy.animations.add('walkL',[9,10,11,12,13,14,15,16,17],15,true);
+    this.enemy.animations.add('walkD',[0,1,2,3,4,5,6,7,8],15,true);
+    this.enemy.animations.add('walkU',[18,19,20,21,22,23,24,25,26],15,true);
     game.physics.arcade.enable(this.enemy);    
 
     //Set up for keyboard input
@@ -177,44 +194,45 @@ var room1 = {
 
  update: function() {
         
-    //Player movement
-    if(game.global.char1){
     //Shadow
     this.lightSprite.reset(this.game.camera.x, this.game.camera.y);
     this.updateShadowTexture();
 
+    //Player movement
+    if(game.global.char1){
+
     //HUD Display
-    if(this.battery == 6){
-        this.batteryB.animations.play('charge6');}
-    if(this.battery == 5){
-        this.batteryB.animations.play('charge5');}
-    if(this.battery == 4){
-        this.batteryB.animations.play('charge4');}
-    if(this.battery == 3){
-        this.batteryB.animations.play('charge3');}
-    if(this.battery == 2){
-        this.batteryB.animations.play('charge2');}
-    if(this.battery == 1){
-        this.batteryB.animations.play('charge1');}
-    if(this.battery == 0){
-        this.batteryB.animations.play('charge0');}
+    // if(this.battery == 6){
+    //     this.batteryB.animations.play('charge6');}
+    // if(this.battery == 5){
+    //     this.batteryB.animations.play('charge5');}
+    // if(this.battery == 4){
+    //     this.batteryB.animations.play('charge4');}
+    // if(this.battery == 3){
+    //     this.batteryB.animations.play('charge3');}
+    // if(this.battery == 2){
+    //     this.batteryB.animations.play('charge2');}
+    // if(this.battery == 1){
+    //     this.batteryB.animations.play('charge1');}
+    // if(this.battery == 0){
+    //     this.batteryB.animations.play('charge0');}
     
 
-    if(game.global.health == 100){
-        this.healthB.animations.play('life6');}
-    else if(game.global.health >= 85){
-        this.healthB.animations.play('life5');}
-    else if(game.global.health >= 70){
-        this.healthB.animations.play('life4');}
-    else if(game.global.health >= 55){
-        this.healthB.animations.play('life3');}
-    else if(game.global.health >= 40){
-        this.healthB.animations.play('life2');}
-    else if(game.global.health >= 25){
-        this.healthB.animations.play('life1');}
-    else if(game.global.health <= 0){
-        this.healthB.animations.play('life0');
-        this.character1.kill();}
+    // if(game.global.health == 100){
+    //     this.healthB.animations.play('life6');}
+    // else if(game.global.health >= 85){
+    //     this.healthB.animations.play('life5');}
+    // else if(game.global.health >= 70){
+    //     this.healthB.animations.play('life4');}
+    // else if(game.global.health >= 55){
+    //     this.healthB.animations.play('life3');}
+    // else if(game.global.health >= 40){
+    //     this.healthB.animations.play('life2');}
+    // else if(game.global.health >= 25){
+    //     this.healthB.animations.play('life1');}
+    // else if(game.global.health <= 0){
+    //     this.healthB.animations.play('life0');
+    //     this.character1.kill();}
 
         this.move1();
     }
@@ -224,8 +242,36 @@ var room1 = {
     else if(game.global.char3){
         this.move3();
     }
-    else
+    else{
         this.move4();
+        if(k.isDown(Phaser.Keyboard.F)){
+            this.fire.alpha = 1
+           
+            if(this.direction == 1){
+                this.fire.play('fireup')
+                this.fire.body.x = this.player.body.x - 28;
+                this.fire.body.y = this.player.body.y - 74;
+            }
+            if(this.direction == 2){
+                this.fire.play('firedown')
+                this.fire.body.x = this.player.body.x - 28;
+                this.fire.body.y = this.player.body.y + 22;
+            }
+            if(this.direction == 3){
+                 this.fire.play('fireleft')
+                 this.fire.body.x = this.player.body.x - 102;
+                 this.fire.body.y = this.player.body.y - 30;
+                }
+            if(this.direction == 4){
+                this.fire.play('fireright')
+                this.fire.body.x = this.player.body.x + 45;
+                this.fire.body.y = this.player.body.y - 30;
+            }
+        }
+        else{
+            this.fire.alpha = 0
+        }
+    }
 
     this.playerLX = this.player.body.x;
     this.playerLY = this.player.body.y;
@@ -266,6 +312,19 @@ var room1 = {
     //Action when collect battery
     game.physics.arcade.overlap(this.player,this.battery1,this.lightOn, null, this);
 
+    //Action when collect key
+    game.physics.arcade.overlap(this.player,this.key,this.teleport, null, this);
+
+    if(game.global.health <= 0){
+        this.player.destroy();
+        game.state.start('gameOver')
+    }
+
+},
+
+teleport: function () {
+    game.global.r1CLEAR = true;
+    game.state.start('mainRoom');
 },
 
 lightOn: function(){
@@ -338,6 +397,7 @@ else {
         this.player.animations.play('walkD');
         this.direction = 2;
         }
+
     if(k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.UP)&& !k.isDown(Phaser.Keyboard.DOWN)){
         this.player.body.x -= 4;
         this.player.animations.play('walkL');
@@ -346,6 +406,7 @@ else {
         this.player.body.x += 4;
         this.player.animations.play('walkR');
         this.direction = 4;}
+
     if(k.isDown(Phaser.Keyboard.UP) && k.isDown(Phaser.Keyboard.LEFT)){
         this.player.body.y -= 4;
         this.player.body.x -= 4;
@@ -382,106 +443,143 @@ move2: function () {
     if(k.isDown(Phaser.Keyboard.UP)){
         this.player.body.y-= 5
         this.player.play('up')
+        this.direction = 1;
     }
     if(k.isDown(Phaser.Keyboard.DOWN)){
         this.player.body.y+=5
         this.player.play('down')
+        this.direction = 2;
     }
     if(k.isDown(Phaser.Keyboard.LEFT)){
         this.player.body.x-=5
-        this.player.play('left')} 
+        this.player.play('left')
+        this.direction = 3;
+    } 
     if(k.isDown(Phaser.Keyboard.RIGHT)){
         this.player.body.x+=5
-        this.player.play('right')}
+        this.player.play('right')
+        this.direction = 4;
+    }
 
     if(!(k.isDown(Phaser.Keyboard.UP))&&!(k.isDown(Phaser.Keyboard.DOWN))&&!(k.isDown(Phaser.Keyboard.LEFT))&&!(k.isDown(Phaser.Keyboard.RIGHT))){
         this.player.play('idle')
         if(k.isDown(Phaser.Keyboard.W)){
             this.player.play('Uattack')
-            console.log('Up attack')}
-        if(k.isDown(Phaser.Keyboard.S)){
-            this.player.play('Dattack')}
-            if(k.isDown(Phaser.Keyboard.D)){
-            this.player.play('Rattack')}
-        if(k.isDown(Phaser.Keyboard.A)){
-            this.player.play('Lattack')}
+            this.direction = 1;
         }
+        if(k.isDown(Phaser.Keyboard.S)){
+            this.player.play('Dattack')
+            this.direction = 2;
+        }
+        if(k.isDown(Phaser.Keyboard.D)){
+            this.player.play('Rattack')
+            this.direction = 4;
+        }
+        if(k.isDown(Phaser.Keyboard.A)){
+            this.player.play('Lattack')
+            this.direction = 3;
+        }
+    }
 },
 
 move3: function (){
     //Skeleton Movements
     if(game.global.health <= 10){
         if(k.isDown(Phaser.Keyboard.UP)){
+            this.direction = 1;
             this.player.play('skeletonMoveUp');
             this.player.body.y -=5;}
         else if (k.isDown(Phaser.Keyboard.DOWN)){
+            this.direction = 2;
             this.player.play('skeletonMoveDown');
             this.player.body.y +=5;}
         else if(k.isDown(Phaser.Keyboard.LEFT)){
+            this.direction = 3;
             this.player.play('skeletonMoveLeft');
             this.player.body.x -=5;}
         else if(k.isDown(Phaser.Keyboard.RIGHT)){
+            this.direction = 4;
             this.player.play('skeletonMoveRight');
             this.player.body.x +=5;}
 
     //Skeleton Attacks
         if (k.isDown(Phaser.Keyboard.S)){
-           this.player.play('skeletonHitDown');}   
+            this.direction = 2;
+            this.player.play('skeletonHitDown');}   
         if(k.isDown(Phaser.Keyboard.A)){
-           this.player.play('skeletonHitLeft');}
+            this.direction = 3;
+            this.player.play('skeletonHitLeft');}
         if(k.isDown(Phaser.Keyboard.D)){
-           this.player.play('skeletonHitRight');}  
+            this.direction = 4;
+            this.player.play('skeletonHitRight');}  
         if(k.isDown(Phaser.Keyboard.W)){
-           this.player.play('skeletonHitUp');}
+            this.direction = 1;
+            this.player.play('skeletonHitUp');}
     }
     //Zombie Movements
     else if(game.global.health <= 50){
         if(k.isDown(Phaser.Keyboard.UP)){
+            this.direction = 1;
             this.player.play('zombieMoveUp');
             this.player.body.y -=5;}
         else if (k.isDown(Phaser.Keyboard.DOWN)){
+            this.direction = 2;
             this.player.play('zombieMoveDown');
             this.player.body.y +=5;}
         else if(k.isDown(Phaser.Keyboard.LEFT)){
+            this.direction = 3;
             this.player.play('zombieMoveLeft');
             this.player.body.x -=5;}
         else if(k.isDown(Phaser.Keyboard.RIGHT)){
+            this.direction = 4;
             this.player.play('zombieMoveRight');
-             this.player.body.x +=5;}
+                this.player.body.x +=5;}
 
     //Zombie Attacks
         if (k.isDown(Phaser.Keyboard.S)){
+            this.direction = 2;
             this.player.play('zombieHitDown');}   
         if(k.isDown(Phaser.Keyboard.A)){
+            this.direction = 3;
             this.player.play('zombieHitLeft');}
         if(k.isDown(Phaser.Keyboard.D)){
+            this.direction = 4;
             this.player.play('zombieHitRight');}  
         if(k.isDown(Phaser.Keyboard.W)){
+            this.direction = 1;
             this.player.play('zombieHitUp');}
     }
     //Normal Movements
     else{   
         if(k.isDown(Phaser.Keyboard.UP)){
+            this.direction = 1;
             this.player.play('moveDown');
             this.player.body.y -=5;}
         else if (k.isDown(Phaser.Keyboard.DOWN)){
+            this.direction = 2;
             this.player.play('moveUp');
             this.player.body.y +=5;}
         else if(k.isDown(Phaser.Keyboard.LEFT)){
+            this.direction = 3;
             this.player.play('moveLeft');
             this.player.body.x -=5;}
         else if(k.isDown(Phaser.Keyboard.RIGHT)){
+            this.direction = 4;
             this.player.play('moveRight');
             this.player.body.x +=5;}
         
     //Normal Attacks
         if (k.isDown(Phaser.Keyboard.S)){
+            this.direction = 2;
             this.player.play('hitDown');}   
         if(k.isDown(Phaser.Keyboard.A)){
+            this.direction = 3;
             this.player.play('hitLeft');}
         if(k.isDown(Phaser.Keyboard.D)){
+            this.direction = 4;
             this.player.play('hitRight');}  
         if(k.isDown(Phaser.Keyboard.W)){
+            this.direction = 1;
             this.player.play('hitUp');}
         }
 },
@@ -490,18 +588,22 @@ move4: function () {
     if(k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.RIGHT)){
         this.player.body.y-=5
         this.player.animations.play('flyup')
+        this.direction = 1;
         }
         if(k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.RIGHT)){
         this.player.body.y+=5
         this.player.animations.play('flydown')
+        this.direction = 2;
         }
         if(k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.UP) && !k.isDown(Phaser.Keyboard.RIGHT)){
         this.player.body.x-=5
         this.player.animations.play('flyleft')
+        this.direction = 3;
         }
         if(k.isDown(Phaser.Keyboard.RIGHT) && !k.isDown(Phaser.Keyboard.DOWN) && !k.isDown(Phaser.Keyboard.LEFT) && !k.isDown(Phaser.Keyboard.UP)){
         this.player.body.x+=5
         this.player.animations.play('flyright')
+        this.direction = 4;
         }
 },
 
@@ -524,7 +626,7 @@ updateShadowTexture: function(){
     }
     else{
         // Randomly change the radius each frame
-        var radius = 70 + this.game.rnd.integerInRange(10,10);
+        var radius = 80 + this.game.rnd.integerInRange(1,5);
     
         // Draw circle of light with a soft edge
         var gradient =
