@@ -3,6 +3,9 @@ var room2 = {
         console.log('In Room 2');
         game.load.image('room2','assets/room2.jpg');
 
+        game.load.audio('water', 'assets/9_49.wav');
+        game.load.audio('ghostSound', 'assets/MONSTER.WAV');
+
         game.load.spritesheet('ghost','assets/ghost.png',46,48);
         game.load.spritesheet('portal','assets/portals.jpg', 80,80);
         game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
@@ -22,6 +25,16 @@ var room2 = {
     create: function() {
     this.bg = game.add.sprite(0,0,'room2');
     this.bg.scale.setTo(3.8, 2.8);
+
+    //Play background music
+    this.music = game.add.audio('water');
+    this.music.volume = .1;
+    this.music.play();
+    this.music.onLoop.add(function(){  this.music.play();},this);
+
+    this.ghostSound = game.add.audio('ghostSound');
+    this.ghostSound.volume = .2;
+
       
     //Create players
      //Create Clay's character
@@ -460,6 +473,7 @@ fireAttack2: function () {
 
 hurt1: function () {
     game.global.health -= .5
+    //this.ghostSound.play();
     console.log(game.global.health)
     },
     
