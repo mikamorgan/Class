@@ -3,6 +3,8 @@ preload: function() {
     console.log('In Room 4');
     game.load.image('room4','assets/room4.jpg');
 
+    game.load.audio('portalSound', 'assets/portalSound.wav');
+
     game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
     game.load.spritesheet('smoke','assets/smoke.png', 128, 128);
     game.load.spritesheet('enemy2','assets/dragon.png',96,64)
@@ -22,6 +24,9 @@ preload: function() {
 create: function() {
     this.bg = game.add.sprite(0,0,'room4');
     this.bg.scale.setTo(.47,.37);
+
+    this.portalSound = game.add.audio('portalSound');
+    this.portalSound.volume = .1;
 
     this.crystal_ball = game.add.sprite(420, 125, 'trinkets');
     this.crystal_ball.animations.add('glow', [88,89,76,77,78,79],7,true);
@@ -360,6 +365,7 @@ fireAttack: function () {
 },
 
 teleport: function () {
+    this.portalSound.play();
     game.state.start('mainRoom');
     game.global.r4CLEAR = true;
 },

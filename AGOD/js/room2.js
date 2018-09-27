@@ -3,6 +3,7 @@ var room2 = {
         console.log('In Room 2');
         game.load.image('room2','assets/room2.jpg');
 
+        game.load.audio('portalSound', 'assets/portalSound.wav');
         game.load.audio('water', 'assets/9_49.wav');
         game.load.audio('ghostSound', 'assets/MONSTER.WAV');
 
@@ -33,7 +34,9 @@ var room2 = {
     this.ghostSound = game.add.audio('ghostSound');
     this.ghostSound.volume = .2;
 
-      
+    this.portalSound = game.add.audio('portalSound');
+    this.portalSound.volume = .1;  
+
     //Create players
      //Create Clay's character
      if(game.global.char1){
@@ -476,6 +479,7 @@ hurt1: function () {
     },
     
 teleport1: function() {
+    this.portalSound.play();
     game.global.r2CLEAR = true;
     game.state.start('mainRoom')
     },

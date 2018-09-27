@@ -28,7 +28,7 @@ create: function() {
     this.bg.scale.setTo(2.75,2.7);
 
     this.portalSound = game.add.audio('portalSound');
-    this.portalSound.volume = .3;
+    this.portalSound.volume = .1;
 
     //Block top of room
     this.block = game.add.sprite(0,0, 'mainRoom');

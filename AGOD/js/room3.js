@@ -3,6 +3,8 @@ var room3 = {
         console.log('In Room 3');
         game.load.image('room3','assets/room3.png');
 
+        game.load.audio('portalSound', 'assets/portalSound.wav');
+
         game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
         game.load.spritesheet('enemy', 'assets/skeleton.png',65.6, 72.5);
         game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
@@ -22,6 +24,9 @@ var room3 = {
  create: function() {
     this.bg = game.add.sprite(0,0,'room3');
     this.bg.scale.setTo(2.75,2.7); 
+
+    this.portalSound = game.add.audio('portalSound');
+    this.portalSound.volume = .1;
  
         //Create players
         //Create Clay's character
@@ -362,6 +367,7 @@ if(this.enemyflag){
 
 teleport:function()
 {
+    this.portalSound.play();
     game.global.r3CLEAR = true;
     game.state.start('mainRoom')
 },

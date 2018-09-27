@@ -3,6 +3,8 @@ var room1 = {
         console.log('In Room 1');
         game.load.image('room1','assets/room1.jpg');
 
+        game.load.audio('portalSound', 'assets/portalSound.wav');
+
         game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
         game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
         game.load.spritesheet('enemy','assets/enemy.png',64,64);
@@ -22,6 +24,9 @@ var room1 = {
  create: function() {
         this.bg = game.add.sprite(40,0,'room1');
         this.bg.scale.setTo(3,1.8); 
+
+        this.portalSound = game.add.audio('portalSound');
+        this.portalSound.volume = .1;
 
         this.fr = 0;
         this.light = false;
@@ -323,6 +328,7 @@ var room1 = {
 },
 
 teleport: function () {
+    this.portalSound.play();
     game.global.r1CLEAR = true;
     game.state.start('mainRoom');
 },
