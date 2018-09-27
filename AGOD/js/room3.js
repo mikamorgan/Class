@@ -264,19 +264,19 @@ if(this.enemyflag){
 //Enemy Attacks
     if((Math.abs(this.player.body.x - this.enemy.body.x) <30)&&(Math.abs(this.player.body.y - this.enemy.body.y) <50)&&(this.enemy.body.y<this.player.body.y)){
         this.enemy.play('hitDown')
-        game.global.health--;
+        game.global.health -= .3;
     }
     else if((Math.abs(this.player.body.x - this.enemy.body.x) <30)&&(Math.abs(this.player.body.y - this.enemy.body.y) <50)&&(this.player.body.y<this.enemy.body.y)){
         this.enemy.play('hitUp')  
-        game.global.health--;      
+        game.global.health -= .3;      
     }
     else if((Math.abs(this.player.body.y - this.enemy.body.y) <30)&&(Math.abs(this.player.body.x - this.enemy.body.x) <50)&&(this.enemy.body.x<this.player.body.x)){ 
-        game.global.health--;   
+        game.global.health -= .3;   
         this.enemy.play('hitRight')
     }
     else if((Math.abs(this.player.body.y - this.enemy.body.y) <30)&&(Math.abs(this.player.body.x - this.enemy.body.x) <50)&&(this.player.body.x<this.enemy.body.x)){
         this.enemy.play('hitLeft')
-        game.global.health--;
+        game.global.health -= .3;
     }
 //Enemy Movements
     if(!this.light){

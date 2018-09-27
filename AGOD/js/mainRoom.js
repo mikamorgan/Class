@@ -35,7 +35,7 @@ create: function() {
     //Create closed door
     this.door = game.add.sprite(520, 85, 'door');
     this.door.scale.setTo(2.5, 2.1);
-    this.door.animations.add('open', [0,1,2,3,4,5,6,7,8,9,10,11], 10, true);
+    this.door.animations.add('open', [0,1,2,3,4,5,6,7,8,9,10,11], 7, true);
     game.physics.arcade.enable(this.door);
 
     //Create first portal
@@ -228,42 +228,10 @@ update: function() {
     this.lightSprite.reset(this.game.camera.x, this.game.camera.y);
     this.updateShadowTexture();
 
-        // if(this.battery == 6){
-        //     this.batteryB.animations.play('charge6');}
-        // if(this.battery == 5){
-        //     this.batteryB.animations.play('charge5');}
-        // if(this.battery == 4){
-        //     this.batteryB.animations.play('charge4');}
-        // if(this.battery == 3){
-        //     this.batteryB.animations.play('charge3');}
-        // if(this.battery == 2){
-        //     this.batteryB.animations.play('charge2');}
-        // if(this.battery == 1){
-        //     this.batteryB.animations.play('charge1');}
-        // if(this.battery == 0){
-        //     this.batteryB.animations.play('charge0');}
-        
+    this.move1();
 
-        // if(game.global.health == 100){
-        //     this.healthB.animations.play('life6');}
-        // else if(game.global.health >= 85){
-        //     this.healthB.animations.play('life5');}
-        // else if(game.global.health >= 70){
-        //     this.healthB.animations.play('life4');}
-        // else if(game.global.health >= 55){
-        //     this.healthB.animations.play('life3');}
-        // else if(game.global.health >= 40){
-        //     this.healthB.animations.play('life2');}
-        // else if(game.global.health >= 25){
-        //     this.healthB.animations.play('life1');}
-        // else if(game.global.health == 0){
-        //     this.healthB.animations.play('life0');
-        //     this.character1.kill();}
-
-       this.move1();
-
-       //Action when collect battery
-        game.physics.arcade.overlap(this.player,this.battery1,this.lightOn, null, this);
+    //Action when collect battery
+    game.physics.arcade.overlap(this.player,this.battery1,this.lightOn, null, this);
    }
    else if(game.global.char2){
        this.move2();
@@ -310,8 +278,8 @@ update: function() {
     game.physics.arcade.overlap(this.player, this.portal4, this.teleport4, null, this);
     
     //Block door unless they have cleared all rooms
-    if(!(r1CLEAR && r2CLEAR && r3CLEAR && r4CLEAR)){
-        game.physics.arcade.overlap(this.player, this.block, this.bounceBack, null, this);
+    if(!(game.global.r1CLEAR && game.global.r2CLEAR && game.global.r3CLEAR && game.global.r4CLEAR)){
+    game.physics.arcade.overlap(this.player, this.block, this.bounceBack, null, this);
     }
     else{
         this.door.play('open');
