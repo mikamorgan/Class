@@ -309,6 +309,7 @@ update: function() {
     game.physics.arcade.overlap(this.player, this.portal3, this.teleport3, null, this);
     game.physics.arcade.overlap(this.player, this.portal4, this.teleport4, null, this);
     
+    //Block door unless they have cleared all rooms
     if(!(r1CLEAR && r2CLEAR && r3CLEAR && r4CLEAR)){
         game.physics.arcade.overlap(this.player, this.block, this.bounceBack, null, this);
     }
