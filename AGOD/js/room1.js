@@ -42,14 +42,14 @@ var room1 = {
         this.direction = 0;
 
         //Create key
-        this.key = game.add.sprite(1145, 725, 'trinkets');
+        this.key = game.add.sprite(Math.random() * 1535,Math.random() * 885, 'trinkets');
         this.key.scale.setTo(1.2);
         this.key.animations.add('key',[55]);
         this.key.play('key');
         game.physics.arcade.enable(this.key);
 
         //Create battery
-        this.battery1 = game.add.sprite(700,500, 'battery');
+        this.battery1 = game.add.sprite(Math.random() * 1535,Math.random() * 885, 'battery');
         this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
         this.battery1.animations.play('bounce');
         game.physics.arcade.enable(this.battery1);
@@ -294,26 +294,26 @@ var room1 = {
     if(this.fr%3 == 0){
         if((this.enemy.body.x > this.playerLX) && (this.enemy.body.y > this.playerLY)){
             if((this.direction != 4) && (this.direction != 2)){
-            this.enemy.body.x -= 4;
-            this.enemy.body.y -= 4;
+            this.enemy.body.x -= 7;
+            this.enemy.body.y -= 7;
             this.enemy.animations.play('walkL');}
         }
         if((this.enemy.body.x > this.playerLX) && !(this.enemy.body.y > this.playerLY)){
             if((this.direction != 4) && (this.direction != 1)){
-            this.enemy.body.x -= 4;
-            this.enemy.body.y += 4;
+            this.enemy.body.x -= 7;
+            this.enemy.body.y += 7;
             this.enemy.animations.play('walkU');}
         }
         if(!(this.enemy.body.x > this.playerLX) && (this.enemy.body.y > this.playerLY)){
             if((this.direction != 3) && (this.direction != 1)){
-            this.enemy.body.x += 4;
-            this.enemy.body.y -= 4;
+            this.enemy.body.x += 7;
+            this.enemy.body.y -= 7;
             this.enemy.animations.play('walkD');}
         }
         if(!(this.enemy.body.x > this.playerLX) && !(this.enemy.body.y > this.playerLY)){
             if((this.direction != 3) && (this.direction != 1)){
-            this.enemy.body.x += 4;
-            this.enemy.body.y += 4;
+            this.enemy.body.x += 7;
+            this.enemy.body.y += 7;
             this.enemy.animations.play('walkR');}
         }
     }

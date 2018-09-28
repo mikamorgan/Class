@@ -10,6 +10,8 @@ var mainMenu = {
         game.load.spritesheet('button4', 'assets/bird.png', 95, 96);       //Coltin is room 4
 
         game.load.bitmapFont('mainFont', 'assets/ganonwhite/font.png', 'assets/ganonwhite/font.xml');
+
+        game.load.audio('bg', 'assets/GRAVEYRD.WAV');
     },
 
     create: function () {
@@ -18,6 +20,10 @@ var mainMenu = {
         //Create background
         this.bg = game.add.sprite(0,0,'mainRoom');
         this.bg.scale.setTo(2.75,2.7);
+
+        //Play background music
+        this.music = game.add.audio('bg');
+        this.music.play('', 0, 0.1, true);
 
         // Title
         var logo = game.add.bitmapText(450, 0, 'mainFont', '', 75)
@@ -51,24 +57,28 @@ var mainMenu = {
     },
 
     char1: function () {
+        this.music.stop();
         game.global.char1 = true;
         game.state.start("mainRoom");
         console.log(game.global.char1);
     },
 
     char2: function () {
+        this.music.stop();
         game.global.char2 = true;
         game.state.start("mainRoom");
         console.log(game.global.char2);
     },
 
     char3: function () {
+        this.music.stop();
         game.global.char3 = true;
         game.state.start("mainRoom");
         console.log(game.global.char3);
     },
 
     char4: function () {
+        this.music.stop();
         game.global.char4 = true;
         game.state.start("mainRoom");
         console.log(game.global.char4);
