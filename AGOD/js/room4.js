@@ -274,7 +274,8 @@ create: function() {
         }
     }
 
-    //Enemy attack
+    if(this.enemy2.alpha == 1){
+        //Enemy attack
     if((Math.abs(this.player.body.x - this.enemy2.body.x) + (Math.abs(this.player.body.y - this.enemy2.body.y) < 200))){
         console.log(this.player.body.x - this.enemy2.body.x)
         console.log(this.player.body.y - this.enemy2.body.y)
@@ -286,22 +287,23 @@ create: function() {
         }
         if(this.fire2d == 2){
             this.fire2.play('fire2down')
-            this.fire2.body.x = this.enemy2.body.x - 28;
-            this.fire2.body.y = this.enemy2.body.y + 22;
+            this.fire2.body.x = this.enemy2.body.x + 60;
+            this.fire2.body.y = this.enemy2.body.y + 80;
         }
         if(this.fire2d == 3){
              this.fire2.play('fire2left')
-             this.fire2.body.x = this.enemy2.body.x - 82;
-             this.fire2.body.y = this.enemy2.body.y - 30;
+             this.fire2.body.x = this.enemy2.body.x - 75;
+             this.fire2.body.y = this.enemy2.body.y - 32;
             }
         if(this.fire2d == 4){
             this.fire2.play('fire2right')
-            this.fire2.body.x = this.enemy2.body.x + 125;
-            this.fire2.body.y = this.enemy2.body.y - 30;
+            this.fire2.body.x = this.enemy2.body.x + 228;
+            this.fire2.body.y = this.enemy2.body.y - 32;
         }
     }
     else{
-        this.fire.alpha = 0
+        this.fire2.alpha = 0
+    }
     }
 
    //Player movement
