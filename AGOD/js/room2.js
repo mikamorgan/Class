@@ -32,7 +32,7 @@ var room2 = {
     this.music.play('', 0, 0.1, true);
 
     this.ghostSound = game.add.audio('ghostSound');
-    this.ghostSound.volume = .2;
+    this.ghostSound.volume = .3;
 
     this.portalSound = game.add.audio('portalSound');
     this.portalSound.volume = .1;  
@@ -234,13 +234,16 @@ var room2 = {
 update: function() {
     this.frameRate++;    
 
-    if(this.ghost1.health ==0){
+    if(this.ghost1.health <=0){
         this.ghost1.destroy()
-        this.ghostflag = false}
-
-    if(this.ghost2.health ==0){
+        this.ghostflag = false
+        this.ghostSound.play();
+    }
+    if(this.ghost2.health <=0){
         this.ghost2.destroy()
-        this.ghostflag2 = false}
+        this.ghostflag2 = false
+        this.ghostSound.play();
+    }
 
 //Ghost functions
     //Ghost one functions
@@ -474,11 +477,11 @@ fireAttack2: function () {
 
 hurt1: function () {
     game.global.health -= .5
-    //this.ghostSound.play();
     console.log(game.global.health)
     },
     
 teleport1: function() {
+    this.music.stop();
     this.portalSound.play();
     game.global.r2CLEAR = true;
     game.state.start('mainRoom')

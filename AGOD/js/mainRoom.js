@@ -7,6 +7,7 @@ preload: function() {
     game.load.spritesheet('door', 'assets/door.png', 96, 64);
 
     game.load.audio('portalSound', 'assets/portalSound.wav');
+    game.load.audio('bg', 'assets/main.mp3');
 
     //For Clay's character
     game.load.spritesheet('battery','assets/battery.png',75,156);
@@ -27,8 +28,14 @@ create: function() {
     this.bg = game.add.sprite(0,0,'mainRoom');
     this.bg.scale.setTo(2.75,2.7);
 
+    //Play background music
+    this.music = game.add.audio('bg');
+    this.music.play('', 0, 0.1, true);
+
     this.portalSound = game.add.audio('portalSound');
     this.portalSound.volume = .1;
+
+
 
     //Block top of room
     this.block = game.add.sprite(0,0, 'mainRoom');
@@ -298,21 +305,25 @@ bounceBack: function () {
 
 teleport1: function () {
     game.state.start('room1');
+    this.music.stop();
     this.portalSound.play();
 },
 
 teleport2: function () {
     game.state.start('room2');
+    this.music.stop();
     this.portalSound.play();
 },
 
 teleport3: function () {
     game.state.start('room3');
+    this.music.stop();
     this.portalSound.play();
 },
 
 teleport4: function () {
     game.state.start('room4');
+    this.music.stop();
     this.portalSound.play();
 },
 
