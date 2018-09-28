@@ -13,7 +13,7 @@ var winGame = {
         this.bg = game.add.sprite(0,0,'BG');
         this.bg.scale.setTo(2.7);
 
-        this.winSound = game.add.audio('winSound');
+        this.winSound = game.add.audio('bg');
         this.winSound.volume = .1;
         this.winSound.play();
 
