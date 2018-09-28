@@ -44,14 +44,14 @@ var room3 = {
         this.direction = 0;
 
         //Create battery
-        this.battery1 = game.add.sprite(400,300, 'battery');
+        this.battery1 = game.add.sprite(Math.random() * 1500,Math.random() * 850, 'battery');
         this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
         this.battery1.animations.play('bounce');
         game.physics.arcade.enable(this.battery1);
         this.battery1.scale.setTo(.3);
 
         //Create key
-        this.key = game.add.sprite(600, 625, 'trinkets');
+        this.key = game.add.sprite(Math.random() * 1500,Math.random() * 850, 'trinkets');
         this.key.scale.setTo(2);
         this.key.animations.add('key',[52]);
         this.key.play('key');
@@ -333,7 +333,7 @@ if(this.enemyflag){
 
 //Player attacks enemy
 if(this.enemyflag){
-    if(!game.global.char1){
+    if(game.global.char2 || game.global.char3){
     if (k.isDown(Phaser.Keyboard.S)){
         if(this.enemy.body.y - this.player.body.y <100)
         if(this.player.body.x - this.enemy.body.x <30)

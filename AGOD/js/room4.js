@@ -66,7 +66,7 @@ create: function() {
         this.direction = 0;
 
         //Create battery
-        this.battery1 = game.add.sprite(400,300, 'battery');
+        this.battery1 = game.add.sprite(Math.random() * 1500,Math.random() * 850, 'battery');
         this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
         this.battery1.animations.play('bounce');
         game.physics.arcade.enable(this.battery1);

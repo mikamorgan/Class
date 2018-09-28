@@ -44,14 +44,14 @@ var room2 = {
         this.direction = 0;
 
         //Create key
-        this.key = game.add.sprite(430, 160, 'trinkets');
+        this.key = game.add.sprite(Math.random() * 1500,Math.random() * 850, 'trinkets');
         this.key.scale.setTo(2);
         this.key.animations.add('key', [53]);
         this.key.play('key');
         game.physics.arcade.enable(this.key);
 
         //Create battery
-        this.battery1 = game.add.sprite(700,500, 'battery');
+        this.battery1 = game.add.sprite(Math.random() * 1500,Math.random() * 850, 'battery');
         this.battery1.animations.add('bounce',[0,1,2,3,4,5,6,7],10,true);
         this.battery1.animations.play('bounce');
         game.physics.arcade.enable(this.battery1);
@@ -286,6 +286,7 @@ update: function() {
             game.physics.arcade.overlap(this.ghost1,this.player, this.hurt1,null,this)
     
         //Player attacks ghost one
+        if(game.global.char2 || game.global.char3){
         if(k.isDown(Phaser.Keyboard.W)){
             if(Math.abs(this.player.body.y - this.ghost1.body.y) <50){
             if(Math.abs(this.player.body.x - this.ghost1.body.x) <30){
@@ -317,7 +318,8 @@ update: function() {
                     this.ghost1.health -= 5;
                 }   
                 }
-            }  
+            }
+        }  
     }
 
     //Ghost two functions
@@ -359,6 +361,7 @@ update: function() {
         }
   
         //Player attacks ghost two
+        if(game.global.char2 || game.global.char3){
         if(k.isDown(Phaser.Keyboard.W)){
             if(Math.abs(this.player.body.y - this.ghost2.body.y) <50){
                 if(Math.abs(this.player.body.x - this.ghost2.body.x) <30){
@@ -391,6 +394,7 @@ update: function() {
                 }   
             }
         }
+    }
     }
     
     //Player movement

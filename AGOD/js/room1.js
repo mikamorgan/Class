@@ -42,7 +42,7 @@ var room1 = {
         this.direction = 0;
 
         //Create key
-        this.key = game.add.sprite(Math.random() * 1535,Math.random() * 885, 'trinkets');
+        this.key = game.add.sprite(Math.random() * 1500,Math.random() * 850, 'trinkets');
         this.key.scale.setTo(1.2);
         this.key.animations.add('key',[55]);
         this.key.play('key');
