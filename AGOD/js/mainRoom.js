@@ -7,6 +7,7 @@ preload: function() {
     game.load.spritesheet('door', 'assets/door.png', 96, 64);
 
     game.load.audio('portalSound', 'assets/portalSound.wav');
+    game.load.audio('doorSound', 'assets/DRSQEEK.WAV');
     game.load.audio('bg', 'assets/main.mp3');
 
     //For Clay's character
@@ -35,7 +36,8 @@ create: function() {
     this.portalSound = game.add.audio('portalSound');
     this.portalSound.volume = .1;
 
-
+    this.doorSound = game.add.audio('doorSound');
+    this.doorSound.volume = .1;
 
     //Block top of room
     this.block = game.add.sprite(0,0, 'mainRoom');
@@ -295,6 +297,7 @@ update: function() {
     }
     else{
         this.door.play('open');
+        this.doorSound.play();
         game.physics.arcade.overlap(this.player, this.door, this.winGame, null, this);
     }
 },
@@ -328,6 +331,7 @@ teleport4: function () {
 },
 
 winGame: function () {
+    this.music.stop();
     game.state.start('winGame');
 },
 

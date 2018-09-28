@@ -4,6 +4,8 @@ var room3 = {
         game.load.image('room3','assets/room3.png');
 
         game.load.audio('portalSound', 'assets/portalSound.wav');
+        game.load.audio('bg', 'assets/MONSTER3.WAV');
+        game.load.audio('skelDeath', 'assets/skelDeath.wav');
 
         game.load.spritesheet('portal', 'assets/portals.jpg', 80, 80);
         game.load.spritesheet('enemy', 'assets/skeleton.png',65.6, 72.5);
@@ -25,8 +27,15 @@ var room3 = {
     this.bg = game.add.sprite(0,0,'room3');
     this.bg.scale.setTo(2.75,2.7); 
 
+    //Play background music
+    this.music = game.add.audio('bg');
+    this.music.play('', 0, 0.1, true);
+
     this.portalSound = game.add.audio('portalSound');
     this.portalSound.volume = .1;
+
+    this.skelDeath = game.add.audio('skelDeath');
+    this.skelDeath.volume = .1;
  
         //Create players
         //Create Clay's character
@@ -351,6 +360,7 @@ if(this.enemyflag){
     if(this.enemy.health <= 0){
         this.enemyflag = false;
         this.enemy.play('death')
+        this.skelDeath.play();
         this.enemy.animations.currentAnim.onComplete.add(this.endgame, this);
     }
 
@@ -367,6 +377,7 @@ if(this.enemyflag){
 
 teleport:function()
 {
+    this.music.stop();
     this.portalSound.play();
     game.global.r3CLEAR = true;
     game.state.start('mainRoom')

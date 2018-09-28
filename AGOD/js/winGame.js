@@ -3,6 +3,8 @@ var winGame = {
         console.log('In Win Game');
         game.load.image('BG','assets/mainRoom.jpg');
 
+        game.load.audio('bg', 'assets/winSound.wav');
+
         game.load.bitmapFont('mainFont', 'assets/ganonwhite/font.png', 'assets/ganonwhite/font.xml');
     },
     
@@ -10,6 +12,10 @@ var winGame = {
         //Create background
         this.bg = game.add.sprite(0,0,'BG');
         this.bg.scale.setTo(2.7);
+
+        this.winSound = game.add.audio('winSound');
+        this.winSound.volume = .1;
+        this.winSound.play();
 
         // Title
         var logo = game.add.bitmapText(600, 250, 'mainFont', '', 120)

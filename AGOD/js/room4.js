@@ -4,6 +4,9 @@ preload: function() {
     game.load.image('room4','assets/room4.jpg');
 
     game.load.audio('portalSound', 'assets/portalSound.wav');
+    game.load.audio('bg', 'assets/MONSTER4.WAV');
+    game.load.audio('dragonDeath', 'assets/dragonDeath.mp3');
+    game.load.audio('smokeSound', 'assets/smokeSound.wav');
 
     game.load.spritesheet('trinkets','assets/trinkets.png', 32, 32);
     game.load.spritesheet('smoke','assets/smoke.png', 128, 128);
@@ -25,8 +28,18 @@ create: function() {
     this.bg = game.add.sprite(0,0,'room4');
     this.bg.scale.setTo(.47,.37);
 
+    //Play background music
+    this.music = game.add.audio('bg');
+    this.music.play('', 0, 0.1, true);
+
     this.portalSound = game.add.audio('portalSound');
     this.portalSound.volume = .1;
+
+    this.dragonDeath = game.add.audio('dragonDeath');
+    this.dragonDeath.volume = .1;
+
+    this.smokeSound = game.add.audio('smokeSound');
+    this.smokeSound.volume = .1;
 
     this.crystal_ball = game.add.sprite(420, 125, 'trinkets');
     this.crystal_ball.animations.add('glow', [88,89,76,77,78,79],7,true);
@@ -345,6 +358,7 @@ create: function() {
         this.smokeFlag = false;
         this.smoke.alpha = 1;
         this.smoke.animations.play('explode');
+        this.smokeSound.play();
         this.smoke.animations.currentAnim.onComplete.add(this.hideSmoke, this);
     }
 
@@ -352,6 +366,7 @@ create: function() {
 
     if(this.enemy2.health <= 0){
         this.enemy2.kill();
+        this.dragonDeath.play();
     }
 },
 
@@ -365,6 +380,7 @@ fireAttack: function () {
 },
 
 teleport: function () {
+    this.music.stop();
     this.portalSound.play();
     game.state.start('mainRoom');
     game.global.r4CLEAR = true;
