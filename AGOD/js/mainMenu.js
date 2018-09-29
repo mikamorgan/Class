@@ -26,10 +26,10 @@ var mainMenu = {
         this.music.play('', 0, 0.1, true);
 
         // Title
-        var logo = game.add.bitmapText(450, 0, 'mainFont', '', 75)
+        var logo = game.add.bitmapText(370, 0, 'mainFont', '', 95)
         logo.text = "Adventure Game of Death";
         game.add.tween(logo).to({
-            y: 350
+            y: 330
         }, 1000, Phaser.Easing.Bounce.Out).start()
 
         // Subtitle
@@ -57,30 +57,26 @@ var mainMenu = {
     },
 
     char1: function () {
-        this.music.stop();
         game.global.char1 = true;
-        game.state.start("mainRoom");
+        game.state.start("char1");
         console.log(game.global.char1);
     },
 
     char2: function () {
-        this.music.stop();
         game.global.char2 = true;
-        game.state.start("mainRoom");
+        game.state.start("char2");
         console.log(game.global.char2);
     },
 
     char3: function () {
-        this.music.stop();
         game.global.char3 = true;
-        game.state.start("mainRoom");
+        game.state.start("char3");
         console.log(game.global.char3);
     },
 
     char4: function () {
-        this.music.stop();
         game.global.char4 = true;
-        game.state.start("mainRoom");
+        game.state.start("char4");
         console.log(game.global.char4);
     },
 

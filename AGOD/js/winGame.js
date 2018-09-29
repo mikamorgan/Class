@@ -14,7 +14,7 @@ var winGame = {
         this.bg.scale.setTo(2.7);
 
         this.winSound = game.add.audio('bg');
-        this.winSound.volume = .1;
+        this.winSound.volume = .5;
         this.winSound.play();
 
         // Title

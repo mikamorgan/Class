@@ -47,7 +47,7 @@ create: function() {
 
     this.smoke = game.add.sprite(655, 335, 'smoke');
     this.smoke.scale.setTo(2);
-    this.smoke.animations.add('explode', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],15,false);
+    this.smoke.animations.add('explode', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],25,false);
     this.smoke.alpha = 0;
 
     //Flag so animation only plays once
@@ -217,12 +217,12 @@ create: function() {
 
         //Give the enemy fire breath
         this.fire2 = game.add.sprite(this.enemy2.body.x,this.enemy2.body.y,'firebreath')
-        this.fire2.scale.setTo(1,2);
         game.physics.arcade.enable(this.fire2)
         this.fire2.animations.add('fire2right',[6,6,6,7,7,7,8,8,8,7,8,7,8],10,false)
         this.fire2.animations.add('fire2left',[3,3,3,4,4,4,5,5,5,4,5,4,5],10,false)
         this.fire2.animations.add('fire2down',[0,0,0,1,1,1,2,2,2,1,2,1,2],10,false)
         this.fire2.animations.add('fire2up',[9,9,9,10,10,10,11,11,11,10,11,10,11],10,false)
+        this.fire2.scale.setTo(1,2);
         this.fire2.alpha = 0;
         this.fire2d = 0;
 
@@ -281,14 +281,14 @@ create: function() {
         console.log(this.player.body.y - this.enemy2.body.y)
         this.fire2.alpha = 1;
         if(this.fire2d == 1){
-            this.fire2.play('fir2eup')
-            this.fire2.body.x = this.enemy2.body.x - 28;
-            this.fire2.body.y = this.enemy2.body.y - 74;
+            this.fire2.play('fire2up')
+            this.fire2.body.x = this.enemy2.body.x + 88;
+            this.fire2.body.y = this.enemy2.body.y - 110;
         }
         if(this.fire2d == 2){
             this.fire2.play('fire2down')
-            this.fire2.body.x = this.enemy2.body.x + 60;
-            this.fire2.body.y = this.enemy2.body.y + 80;
+            this.fire2.body.x = this.enemy2.body.x + 90;
+            this.fire2.body.y = this.enemy2.body.y + 150;
         }
         if(this.fire2d == 3){
              this.fire2.play('fire2left')
@@ -368,6 +368,7 @@ create: function() {
 
     if(this.enemy2.health <= 0){
         this.enemy2.kill();
+        this.fire2.kill();
         this.dragonDeath.play();
     }
 },

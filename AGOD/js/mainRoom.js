@@ -24,6 +24,7 @@ preload: function() {
 },
 
 create: function() {
+    game.sound.stopAll();
 
     //Create background
     this.bg = game.add.sprite(0,0,'mainRoom');
@@ -31,13 +32,13 @@ create: function() {
 
     //Play background music
     this.music = game.add.audio('bg');
-    this.music.play('', 0, 0.1, true);
+    this.music.play('', 0, 0.2, true);
 
     this.portalSound = game.add.audio('portalSound');
-    this.portalSound.volume = .1;
+    this.portalSound.volume = .3;
 
     this.doorSound = game.add.audio('doorSound');
-    this.doorSound.volume = .1;
+    this.doorSound.volume = .2;
 
     //Block top of room
     this.block = game.add.sprite(0,0, 'mainRoom');
@@ -576,7 +577,7 @@ lightOn: function(){
 
 updateShadowTexture: function(){
     // Draw shadow
-    this.shadowTexture.context.fillStyle = 'rgb(10, 10, 10)';
+    this.shadowTexture.context.fillStyle = 'rgb(20, 20, 20)';
     this.shadowTexture.context.fillRect(0, 0, this.game.width, this.game.height);
     
     if(this.light){
@@ -593,7 +594,7 @@ updateShadowTexture: function(){
     }
     else{
         // Randomly change the radius each frame
-        var radius = 80 + this.game.rnd.integerInRange(1,5);
+        var radius = 100 + this.game.rnd.integerInRange(1,5);
     
         // Draw circle of light with a soft edge
         var gradient =
