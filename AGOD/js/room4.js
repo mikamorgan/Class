@@ -52,6 +52,7 @@ create: function() {
 
     //Flag so animation only plays once
     this.smokeFlag = true;
+    this.dragonS = true;
 
     this.key = game.add.sprite(1145, 425, 'trinkets');
     this.key.scale.setTo(1.2);
@@ -369,7 +370,10 @@ create: function() {
     if(this.enemy2.health <= 0){
         this.enemy2.kill();
         this.fire2.kill();
-        this.dragonDeath.play();
+
+        if(this.dragonS){
+        this.dragonDeath.play();}
+        this.dragonS = false;
     }
 },
 

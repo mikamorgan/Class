@@ -40,6 +40,7 @@ var room1 = {
         this.fr = 0;
         this.light = false;
         this.direction = 0;
+        this.flag = true;
 
         //Create key
         this.key = game.add.sprite(Math.random() * 1500,Math.random() * 850, 'trinkets');
@@ -292,29 +293,41 @@ var room1 = {
 
     //Move the skeleton toward player unless you look at it
     if(this.fr%3 == 0){
+        this.flag = true;
         if((this.enemy.body.x > this.playerLX) && (this.enemy.body.y > this.playerLY)){
             if((this.direction != 4) && (this.direction != 2)){
-            this.enemy.body.x -= 7;
-            this.enemy.body.y -= 7;
+            this.flag = false;
+            this.enemy.body.x -= 5;
+            this.enemy.body.y -= 5;
             this.enemy.animations.play('walkL');}
         }
         if((this.enemy.body.x > this.playerLX) && !(this.enemy.body.y > this.playerLY)){
             if((this.direction != 4) && (this.direction != 1)){
-            this.enemy.body.x -= 7;
-            this.enemy.body.y += 7;
+            this.flag = false;
+            this.enemy.body.x -= 5;
+            this.enemy.body.y += 5;
             this.enemy.animations.play('walkU');}
         }
         if(!(this.enemy.body.x > this.playerLX) && (this.enemy.body.y > this.playerLY)){
             if((this.direction != 3) && (this.direction != 1)){
-            this.enemy.body.x += 7;
-            this.enemy.body.y -= 7;
+            this.flag = false;
+            this.enemy.body.x += 5;
+            this.enemy.body.y -= 5;
             this.enemy.animations.play('walkD');}
         }
         if(!(this.enemy.body.x > this.playerLX) && !(this.enemy.body.y > this.playerLY)){
             if((this.direction != 3) && (this.direction != 1)){
-            this.enemy.body.x += 7;
-            this.enemy.body.y += 7;
+            this.flag = false;
+            this.enemy.body.x += 5;
+            this.enemy.body.y += 5;
             this.enemy.animations.play('walkR');}
+        }
+
+        if(!this.flag){
+            this.music.volume = 0.1;
+        }
+        else{
+            this.music.volume = 0.0;
         }
     }
 
